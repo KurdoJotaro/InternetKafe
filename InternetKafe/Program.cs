@@ -18,6 +18,12 @@ static class Program
         yonetici.BilgisayarEkle(new Bilgisayar { Numara = 2, RamGB = 16, IslemciPuani = 3, EkranKartiPuani = 3 });
         yonetici.BilgisayarEkle(new Bilgisayar { Numara = 3, RamGB = 32, IslemciPuani = 4, EkranKartiPuani = 4 });
 
+
+        // Örnek Toptancý ve Ýkram
+        yonetici.ToptanciEkle(new Toptanci { Ad = "Ahmet Toptan", Yas = 45, FirmaAdi = "Ahmet Gýda", VergiNo = "1234567890" });
+        var kola = new Ikram { Ad = "Kutu Kola", Fiyat = 25m, StokMiktari = 50 };
+        yonetici.IkramEkle(kola);
+
         Application.Run(new AnaForm(yonetici));
     }
 }

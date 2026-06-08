@@ -46,4 +46,17 @@ public partial class AnaForm : Form
         form.ShowDialog();
         DashboardGuncelle();
     }
+    private void btnToptancilar_Click(object sender, EventArgs e)
+    {
+        using var form = new ToptanciForm(_yonetici);
+        form.ShowDialog();
+        DashboardGuncelle();
+    }
+
+    private void btnIkramlar_Click(object sender, EventArgs e)
+    {
+        using var form = new IkramForm(_yonetici);
+        form.ShowDialog();
+        DashboardGuncelle();
+    }
 }

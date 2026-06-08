@@ -132,5 +132,60 @@
         public decimal ToplamGider() => _islemler.Where(i => !i.GelirMi).Sum(i => i.Tutar);
         public decimal NetKar() => ToplamGelir() - ToplamGider();
         public decimal BugunkuGelir() => _islemler.Where(i => i.GelirMi && i.Tarih.Date == DateTime.Today).Sum(i => i.Tutar);
+
+        // ==========================================
+        // İKRAM VE TOPTANCI YÖNETİMİ
+        // ==========================================
+        private readonly List<Ikram> _ikramlar = new();
+        private readonly List<Toptanci> _toptancilar = new();
+
+        public IReadOnlyList<Ikram> Ikramlar => _ikramlar;
+        public IReadOnlyList<Toptanci> Toptancilar => _toptancilar;
+
+        public void IkramEkle(Ikram ikram)
+        {
+            if (ikram == null) throw new ArgumentNullException(nameof(ikram));
+            _ikramlar.Add(ikram);
+        }
+
+        public void ToptanciEkle(Toptanci toptanci)
+        {
+            if (toptanci == null) throw new ArgumentNullException(nameof(toptanci));
+            _toptancilar.Add(toptanci);
+        }
+
+        public void IkramSatis(Ikram ikram, int adet)
+        {
+            if (ikram.StokMiktari < adet)
+                throw new InvalidOperationException("Yetersiz stok!");
+
+            ikram.StokMiktari -= adet;
+            decimal toplamTutar = ikram.Fiyat * adet;
+
+            _islemler.Add(new GelirGider
+            {
+                Aciklama = $"İkram Satışı: {adet}x {ikram.Ad}",
+                Tutar = toplamTutar,
+                GelirMi = true,
+                Tarih = DateTime.Now
+            });
+        }
+
+        public void StokAlimi(Ikram ikram, Toptanci toptanci, int adet, decimal alisFiyati)
+        {
+            if (adet <= 0) throw new ArgumentException("Alım adedi 0'dan büyük olmalıdır.");
+            if (alisFiyati < 0) throw new ArgumentException("Alış fiyatı negatif olamaz.");
+
+            ikram.StokMiktari += adet;
+            decimal toplamGider = alisFiyati * adet;
+
+            _islemler.Add(new GelirGider
+            {
+                Aciklama = $"Stok Alımı: {toptanci.FirmaAdi} - {adet}x {ikram.Ad}",
+                Tutar = toplamGider,
+                GelirMi = false,
+                Tarih = DateTime.Now
+            });
+        }
     }
 }

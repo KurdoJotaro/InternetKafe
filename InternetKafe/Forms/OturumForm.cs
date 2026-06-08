@@ -8,10 +8,6 @@ public partial class OturumForm : Form
     {
         InitializeComponent();
         _yonetici = yonetici;
-
-        // Form yüklenirken verileri doğrudan burada çekiyoruz
-        CombolariDoldur();
-        AktifOturumlariGuncelle();
     }
 
     private void CombolariDoldur()
@@ -145,5 +141,11 @@ public partial class OturumForm : Form
         lblBilgisayarUcreti.Text = "PC Ücreti: -";
         lblIndirim.Text = "İndirim: -";
         lblToplamTutar.Text = "TOPLAM: -";
+    }
+
+    private void OturumForm_Load(object sender, EventArgs e)
+    {
+        CombolariDoldur();
+        AktifOturumlariGuncelle();
     }
 }

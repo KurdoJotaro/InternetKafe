@@ -170,6 +170,7 @@
             Controls.Add(cmbMusteri);
             Name = "OturumForm";
             Text = "OturumForm";
+            Load += OturumForm_Load;
             ((System.ComponentModel.ISupportInitialize)numDakika).EndInit();
             ResumeLayout(false);
             PerformLayout();

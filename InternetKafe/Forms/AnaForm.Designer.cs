@@ -36,13 +36,15 @@
             btnOturumlar = new Button();
             lblAktifOturum = new Label();
             lblBugunkuGelir = new Label();
+            btnToptancilar = new Button();
+            btnIkramlar = new Button();
             SuspendLayout();
             // 
             // btnMusteriler
             // 
             btnMusteriler.Location = new Point(31, 32);
             btnMusteriler.Name = "btnMusteriler";
-            btnMusteriler.Size = new Size(131, 29);
+            btnMusteriler.Size = new Size(139, 29);
             btnMusteriler.TabIndex = 0;
             btnMusteriler.Text = "Müşteri Yönetimi";
             btnMusteriler.UseVisualStyleBackColor = true;
@@ -61,7 +63,7 @@
             // 
             btnBilgisayarlar.Location = new Point(241, 32);
             btnBilgisayarlar.Name = "btnBilgisayarlar";
-            btnBilgisayarlar.Size = new Size(167, 29);
+            btnBilgisayarlar.Size = new Size(182, 29);
             btnBilgisayarlar.TabIndex = 2;
             btnBilgisayarlar.Text = "Bilgisayar Yönetimi";
             btnBilgisayarlar.UseVisualStyleBackColor = true;
@@ -113,11 +115,33 @@
             lblBugunkuGelir.TabIndex = 7;
             lblBugunkuGelir.Text = "Bugünkü Gelir: ₺0,00";
             // 
+            // btnToptancilar
+            // 
+            btnToptancilar.Location = new Point(31, 187);
+            btnToptancilar.Name = "btnToptancilar";
+            btnToptancilar.Size = new Size(139, 29);
+            btnToptancilar.TabIndex = 8;
+            btnToptancilar.Text = "Toptancı Yönetimi";
+            btnToptancilar.UseVisualStyleBackColor = true;
+            btnToptancilar.Click += btnToptancilar_Click;
+            // 
+            // btnIkramlar
+            // 
+            btnIkramlar.Location = new Point(241, 187);
+            btnIkramlar.Name = "btnIkramlar";
+            btnIkramlar.Size = new Size(182, 29);
+            btnIkramlar.TabIndex = 9;
+            btnIkramlar.Text = "İkram ve Stok Yönetimi";
+            btnIkramlar.UseVisualStyleBackColor = true;
+            btnIkramlar.Click += btnIkramlar_Click;
+            // 
             // AnaForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnIkramlar);
+            Controls.Add(btnToptancilar);
             Controls.Add(lblBugunkuGelir);
             Controls.Add(lblAktifOturum);
             Controls.Add(btnOturumlar);
@@ -128,6 +152,7 @@
             Controls.Add(btnMusteriler);
             Name = "AnaForm";
             Text = "AnaForm";
+            Load += AnaForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -142,5 +167,7 @@
         private Button btnOturumlar;
         private Label lblAktifOturum;
         private Label lblBugunkuGelir;
+        private Button btnToptancilar;
+        private Button btnIkramlar;
     }
 }
