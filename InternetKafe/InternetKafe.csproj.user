@@ -4,6 +4,9 @@
     <Compile Update="Forms\AnaForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\BilgisayarYonetimForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\MusteriYonetimForm.cs">
       <SubType>Form</SubType>
     </Compile>
