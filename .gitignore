@@ -1,12 +1,84 @@
-## Visual Studio Hafıza Klasörü
-.vs/
+## Visual Studio / .NET Gitignore
 
-## Derleme ve Çıktı Klasörleri
-[Bb]in/
-[Oo]bj/
-
-## Kullanıcıya Özel VS Ayarları
-*.user
+# Kullanıcıya özel dosyalar
+*.rsuser
 *.suo
+*.user
 *.userosscache
 *.sln.docstates
+
+# Visual Studio hafıza ve ayar klasörleri
+.vs/
+*.sln.iml
+
+# Derleme çıktıları
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.fragment.lock.json
+
+# .NET Core
+artifacts/
+
+# Rider
+.idea/
+*.sln.iml
+
+# Test sonuçları
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+TestResult.xml
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+# Chutzpah
+_Chutzpah*
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Code Coverage
+*.dotCover
+*.coverage
+*.coveragexml
+
+# Publish çıktıları
+*.publish.xml
+PublishScripts/
+
+# NuGet v3 cache
+project.nuget.cache
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
