@@ -1,0 +1,17 @@
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\obj\Debug\net8.0-windows\InternetKafe.AnaForm.resources
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\obj\Debug\net8.0-windows\InternetKafe.csproj.GenerateResource.cache
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\obj\Debug\net8.0-windows\InternetKafe.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\obj\Debug\net8.0-windows\InternetKafe.AssemblyInfoInputs.cache
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\obj\Debug\net8.0-windows\InternetKafe.AssemblyInfo.cs
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\obj\Debug\net8.0-windows\InternetKafe.csproj.CoreCompileInputs.cache
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\bin\Debug\net8.0-windows\InternetKafe.exe
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\bin\Debug\net8.0-windows\InternetKafe.deps.json
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\bin\Debug\net8.0-windows\InternetKafe.runtimeconfig.json
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\bin\Debug\net8.0-windows\InternetKafe.dll
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\bin\Debug\net8.0-windows\InternetKafe.pdb
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\obj\Debug\net8.0-windows\InternetKafe.MusteriYonetimForm.resources
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\obj\Debug\net8.0-windows\InternetKafe.dll
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\obj\Debug\net8.0-windows\refint\InternetKafe.dll
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\obj\Debug\net8.0-windows\InternetKafe.pdb
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\obj\Debug\net8.0-windows\InternetKafe.genruntimeconfig.cache
+C:\Users\Abdii\Documents\OOProje2\InternetKafe\InternetKafe\obj\Debug\net8.0-windows\ref\InternetKafe.dll
