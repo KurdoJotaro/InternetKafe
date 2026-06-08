@@ -1,3 +1,12 @@
+## Visual Studio Hafıza Klasörü
 .vs/
+
+## Derleme ve Çıktı Klasörleri
 [Bb]in/
 [Oo]bj/
+
+## Kullanıcıya Özel VS Ayarları
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
