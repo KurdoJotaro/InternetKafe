@@ -2,72 +2,69 @@
 {
     public class KafeYonetici
     {
+        // --- Alanlar ---
         private readonly List<Musteri> _musteriler = new();
         private readonly List<Bilgisayar> _bilgisayarlar = new();
+        private readonly List<Oturum> _oturumlar = new();
+        private readonly List<GelirGider> _islemler = new();
 
+        // --- Özellikler ---
         public IReadOnlyList<Musteri> Musteriler => _musteriler;
         public IReadOnlyList<Bilgisayar> Bilgisayarlar => _bilgisayarlar;
+        public IReadOnlyList<Oturum> Oturumlar => _oturumlar;
+        public IReadOnlyList<GelirGider> Islemler => _islemler;
 
+        // ==========================================
+        // MÜŞTERİ YÖNETİMİ
+        // ==========================================
         public void MusteriEkle(Musteri musteri)
         {
-            if (musteri == null)
-                throw new ArgumentNullException(nameof(musteri), "Müşteri verisi boş olamaz.");
-
-            if (_musteriler.Contains(musteri))
-                throw new InvalidOperationException("Bu müşteri zaten listede mevcut.");
-
+            if (musteri == null) throw new ArgumentNullException(nameof(musteri));
+            if (_musteriler.Contains(musteri)) throw new InvalidOperationException("Bu müşteri listede mevcut.");
             _musteriler.Add(musteri);
         }
 
         public void MusteriSil(Musteri musteri)
         {
-            if (musteri == null)
-                throw new ArgumentNullException(nameof(musteri));
+            if (musteri == null) throw new ArgumentNullException(nameof(musteri));
+
+            // Aktif oturumu olan müşteri silinemez
+            if (_oturumlar.Any(o => o.AktifMi && o.Musteri == musteri))
+                throw new InvalidOperationException("Aktif oturumu olan müşteri silinemez!");
 
             _musteriler.Remove(musteri);
         }
 
         public void MusteriGuncelle(int index, string ad, int yas, bool uyelikVar)
         {
-            if (index < 0 || index >= _musteriler.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), "Geçersiz müşteri indeksi.");
-
+            if (index < 0 || index >= _musteriler.Count) throw new ArgumentOutOfRangeException(nameof(index));
             var musteri = _musteriler[index];
             musteri.Ad = ad;
             musteri.Yas = yas;
             musteri.UyelikVar = uyelikVar;
         }
 
-
+        // ==========================================
+        // BİLGİSAYAR YÖNETİMİ
+        // ==========================================
         public void BilgisayarEkle(Bilgisayar bilgisayar)
         {
-            if (bilgisayar == null)
-                throw new ArgumentNullException(nameof(bilgisayar), "Bilgisayar verisi boş olamaz.");
-
-            // Aynı numaraya sahip bilgisayar eklenmesini engelle
-            if (_bilgisayarlar.Any(b => b.Numara == bilgisayar.Numara))
-                throw new InvalidOperationException("Bu numaraya sahip bir bilgisayar zaten kayıtlı.");
-
+            if (bilgisayar == null) throw new ArgumentNullException(nameof(bilgisayar));
+            if (_bilgisayarlar.Any(b => b.Numara == bilgisayar.Numara)) throw new InvalidOperationException("Bu numara zaten kayıtlı.");
             _bilgisayarlar.Add(bilgisayar);
         }
 
         public void BilgisayarSil(Bilgisayar bilgisayar)
         {
-            if (bilgisayar == null)
-                throw new ArgumentNullException(nameof(bilgisayar));
-
+            if (bilgisayar == null) throw new ArgumentNullException(nameof(bilgisayar));
             _bilgisayarlar.Remove(bilgisayar);
         }
 
         public void BilgisayarGuncelle(int index, int numara, int ramGB, int islemciPuani, int ekranKartiPuani)
         {
-            if (index < 0 || index >= _bilgisayarlar.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), "Geçersiz bilgisayar indeksi.");
-
+            if (index < 0 || index >= _bilgisayarlar.Count) throw new ArgumentOutOfRangeException(nameof(index));
             var pc = _bilgisayarlar[index];
-
-            if (pc.Numara != numara && _bilgisayarlar.Any(b => b.Numara == numara))
-                throw new InvalidOperationException("Bu numaraya sahip başka bir bilgisayar var.");
+            if (pc.Numara != numara && _bilgisayarlar.Any(b => b.Numara == numara)) throw new InvalidOperationException("Bu numara zaten var.");
 
             pc.Numara = numara;
             pc.RamGB = ramGB;
@@ -79,5 +76,61 @@
         {
             return _bilgisayarlar.Count(b => !b.DoluMu);
         }
+
+        // ==========================================
+        // OTURUM YÖNETİMİ
+        // ==========================================
+        public Oturum OturumBaslat(Musteri musteri, Bilgisayar bilgisayar)
+        {
+            if (musteri == null) throw new ArgumentNullException(nameof(musteri));
+            if (bilgisayar == null) throw new ArgumentNullException(nameof(bilgisayar));
+            if (bilgisayar.DoluMu) throw new InvalidOperationException("Bu bilgisayar zaten dolu.");
+
+            var oturum = new Oturum
+            {
+                Musteri = musteri,
+                Bilgisayar = bilgisayar,
+                BaslangicZamani = DateTime.Now,
+                AktifMi = true,
+                IkramTutari = 0
+            };
+
+            bilgisayar.DoluMu = true;
+            _oturumlar.Add(oturum);
+            return oturum;
+        }
+
+        public void OturumBitir(Oturum oturum, int dakika)
+        {
+            if (oturum == null) throw new ArgumentNullException(nameof(oturum));
+            if (!oturum.AktifMi) throw new InvalidOperationException("Bu oturum zaten kapalı.");
+
+            oturum.KullanilanDakika = dakika;
+            oturum.Bilgisayar.DoluMu = false;
+            oturum.AktifMi = false;
+
+            oturum.Musteri.ToplamHarcama += oturum.ToplamTutar;
+
+            _islemler.Add(new GelirGider
+            {
+                Aciklama = $"Oturum - {oturum.Musteri.Ad} PC-{oturum.Bilgisayar.Numara}",
+                Tutar = oturum.ToplamTutar,
+                GelirMi = true,
+                Tarih = DateTime.Now
+            });
+        }
+
+        public int AktifOturumSayisi()
+        {
+            return _oturumlar.Count(o => o.AktifMi);
+        }
+
+        // ==========================================
+        // GELİR/GİDER YÖNETİMİ
+        // ==========================================
+        public decimal ToplamGelir() => _islemler.Where(i => i.GelirMi).Sum(i => i.Tutar);
+        public decimal ToplamGider() => _islemler.Where(i => !i.GelirMi).Sum(i => i.Tutar);
+        public decimal NetKar() => ToplamGelir() - ToplamGider();
+        public decimal BugunkuGelir() => _islemler.Where(i => i.GelirMi && i.Tarih.Date == DateTime.Today).Sum(i => i.Tutar);
     }
 }

@@ -20,6 +20,10 @@ public partial class AnaForm : Form
         lblMusteriSayisi.Text = $"Müşteri Sayısı: {_yonetici.Musteriler.Count}";
         lblToplamPC.Text = $"Toplam PC: {_yonetici.Bilgisayarlar.Count}";
         lblBosPC.Text = $"Boş PC: {_yonetici.BosBilgisayarSayisi()}";
+
+        // Yeni eklenen alanlar
+        lblAktifOturum.Text = $"Aktif Oturum: {_yonetici.AktifOturumSayisi()}";
+        lblBugunkuGelir.Text = $"Bugünkü Gelir: {_yonetici.BugunkuGelir():C2}";
     }
 
     private void btnMusteriler_Click(object sender, EventArgs e)
@@ -32,6 +36,13 @@ public partial class AnaForm : Form
     private void btnBilgisayarlar_Click(object sender, EventArgs e)
     {
         using var form = new BilgisayarYonetimForm(_yonetici);
+        form.ShowDialog();
+        DashboardGuncelle();
+    }
+
+    private void btnOturumlar_Click(object sender, EventArgs e)
+    {
+        using var form = new OturumForm(_yonetici);
         form.ShowDialog();
         DashboardGuncelle();
     }

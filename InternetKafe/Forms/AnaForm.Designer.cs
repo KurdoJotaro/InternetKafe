@@ -33,6 +33,9 @@
             btnBilgisayarlar = new Button();
             lblToplamPC = new Label();
             lblBosPC = new Label();
+            btnOturumlar = new Button();
+            lblAktifOturum = new Label();
+            lblBugunkuGelir = new Label();
             SuspendLayout();
             // 
             // btnMusteriler
@@ -82,11 +85,42 @@
             lblBosPC.TabIndex = 4;
             lblBosPC.Text = "Boş PC: 0";
             // 
+            // btnOturumlar
+            // 
+            btnOturumlar.Location = new Point(489, 38);
+            btnOturumlar.Name = "btnOturumlar";
+            btnOturumlar.Size = new Size(147, 29);
+            btnOturumlar.TabIndex = 5;
+            btnOturumlar.Text = "Oturum Yönetimi";
+            btnOturumlar.UseVisualStyleBackColor = true;
+            btnOturumlar.Click += btnOturumlar_Click;
+            // 
+            // lblAktifOturum
+            // 
+            lblAktifOturum.AutoSize = true;
+            lblAktifOturum.Location = new Point(498, 78);
+            lblAktifOturum.Name = "lblAktifOturum";
+            lblAktifOturum.Size = new Size(109, 20);
+            lblAktifOturum.TabIndex = 6;
+            lblAktifOturum.Text = "Aktif Oturum: 0";
+            // 
+            // lblBugunkuGelir
+            // 
+            lblBugunkuGelir.AutoSize = true;
+            lblBugunkuGelir.Location = new Point(493, 106);
+            lblBugunkuGelir.Name = "lblBugunkuGelir";
+            lblBugunkuGelir.Size = new Size(143, 20);
+            lblBugunkuGelir.TabIndex = 7;
+            lblBugunkuGelir.Text = "Bugünkü Gelir: ₺0,00";
+            // 
             // AnaForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblBugunkuGelir);
+            Controls.Add(lblAktifOturum);
+            Controls.Add(btnOturumlar);
             Controls.Add(lblBosPC);
             Controls.Add(lblToplamPC);
             Controls.Add(btnBilgisayarlar);
@@ -105,5 +139,8 @@
         private Button btnBilgisayarlar;
         private Label lblToplamPC;
         private Label lblBosPC;
+        private Button btnOturumlar;
+        private Label lblAktifOturum;
+        private Label lblBugunkuGelir;
     }
 }
