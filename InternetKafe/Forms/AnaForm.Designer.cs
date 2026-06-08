@@ -62,6 +62,7 @@
             btnBilgisayarlar.TabIndex = 2;
             btnBilgisayarlar.Text = "Bilgisayar Yönetimi";
             btnBilgisayarlar.UseVisualStyleBackColor = true;
+            btnBilgisayarlar.Click += btnBilgisayarlar_Click;
             // 
             // lblToplamPC
             // 

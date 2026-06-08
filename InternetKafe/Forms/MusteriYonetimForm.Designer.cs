@@ -155,6 +155,7 @@
             Controls.Add(txtAd);
             Name = "MusteriYonetimForm";
             Text = "MusteriYonetimForm";
+            Load += MusteriYonetimForm_Load;
             ((System.ComponentModel.ISupportInitialize)numYas).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvMusteriler).EndInit();
             ResumeLayout(false);

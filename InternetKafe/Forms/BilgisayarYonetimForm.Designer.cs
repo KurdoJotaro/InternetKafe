@@ -38,8 +38,16 @@
             btnEkle = new Button();
             btnGuncelle = new Button();
             btnSil = new Button();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            dgvBilgisayarlar = new DataGridView();
+            colNumara = new DataGridViewTextBoxColumn();
+            colRam = new DataGridViewTextBoxColumn();
+            colIslemci = new DataGridViewTextBoxColumn();
+            colEkranKarti = new DataGridViewTextBoxColumn();
+            colPerformans = new DataGridViewTextBoxColumn();
+            colKategori = new DataGridViewTextBoxColumn();
+            colSaatlikUcret = new DataGridViewTextBoxColumn();
+            colDurum = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dgvBilgisayarlar).BeginInit();
             SuspendLayout();
             // 
             // txtNumara
@@ -114,6 +122,7 @@
             btnEkle.TabIndex = 7;
             btnEkle.Text = "Ekle";
             btnEkle.UseVisualStyleBackColor = true;
+            btnEkle.Click += btnEkle_Click;
             // 
             // btnGuncelle
             // 
@@ -123,6 +132,7 @@
             btnGuncelle.TabIndex = 8;
             btnGuncelle.Text = "Güncelle";
             btnGuncelle.UseVisualStyleBackColor = true;
+            btnGuncelle.Click += btnGuncelle_Click;
             // 
             // btnSil
             // 
@@ -132,22 +142,73 @@
             btnSil.TabIndex = 9;
             btnSil.Text = "Sil";
             btnSil.UseVisualStyleBackColor = true;
+            btnSil.Click += btnSil_Click;
             // 
-            // dataGridView1
+            // dgvBilgisayarlar
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(185, 328);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(300, 188);
-            dataGridView1.TabIndex = 10;
+            dgvBilgisayarlar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvBilgisayarlar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvBilgisayarlar.Columns.AddRange(new DataGridViewColumn[] { colNumara, colRam, colIslemci, colEkranKarti, colPerformans, colKategori, colSaatlikUcret, colDurum });
+            dgvBilgisayarlar.Location = new Point(26, 241);
+            dgvBilgisayarlar.Name = "dgvBilgisayarlar";
+            dgvBilgisayarlar.RowHeadersWidth = 51;
+            dgvBilgisayarlar.Size = new Size(745, 188);
+            dgvBilgisayarlar.TabIndex = 10;
+            // 
+            // colNumara
+            // 
+            colNumara.HeaderText = "Numara";
+            colNumara.MinimumWidth = 6;
+            colNumara.Name = "colNumara";
+            // 
+            // colRam
+            // 
+            colRam.HeaderText = "RAM";
+            colRam.MinimumWidth = 6;
+            colRam.Name = "colRam";
+            // 
+            // colIslemci
+            // 
+            colIslemci.HeaderText = "İşlemci";
+            colIslemci.MinimumWidth = 6;
+            colIslemci.Name = "colIslemci";
+            // 
+            // colEkranKarti
+            // 
+            colEkranKarti.HeaderText = "Ekran Kartı";
+            colEkranKarti.MinimumWidth = 6;
+            colEkranKarti.Name = "colEkranKarti";
+            // 
+            // colPerformans
+            // 
+            colPerformans.HeaderText = "Performans";
+            colPerformans.MinimumWidth = 6;
+            colPerformans.Name = "colPerformans";
+            // 
+            // colKategori
+            // 
+            colKategori.HeaderText = "Kategori";
+            colKategori.MinimumWidth = 6;
+            colKategori.Name = "colKategori";
+            // 
+            // colSaatlikUcret
+            // 
+            colSaatlikUcret.HeaderText = "Saatlik Ücret";
+            colSaatlikUcret.MinimumWidth = 6;
+            colSaatlikUcret.Name = "colSaatlikUcret";
+            // 
+            // colDurum
+            // 
+            colDurum.HeaderText = "Durum";
+            colDurum.MinimumWidth = 6;
+            colDurum.Name = "colDurum";
             // 
             // BilgisayarYonetimForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvBilgisayarlar);
             Controls.Add(btnSil);
             Controls.Add(btnGuncelle);
             Controls.Add(btnEkle);
@@ -160,7 +221,8 @@
             Controls.Add(txtNumara);
             Name = "BilgisayarYonetimForm";
             Text = "BilgisayarYonetimForm";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += BilgisayarYonetimForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvBilgisayarlar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -177,6 +239,14 @@
         private Button btnEkle;
         private Button btnGuncelle;
         private Button btnSil;
-        private DataGridView dataGridView1;
+        private DataGridView dgvBilgisayarlar;
+        private DataGridViewTextBoxColumn colNumara;
+        private DataGridViewTextBoxColumn colRam;
+        private DataGridViewTextBoxColumn colIslemci;
+        private DataGridViewTextBoxColumn colEkranKarti;
+        private DataGridViewTextBoxColumn colPerformans;
+        private DataGridViewTextBoxColumn colKategori;
+        private DataGridViewTextBoxColumn colSaatlikUcret;
+        private DataGridViewTextBoxColumn colDurum;
     }
 }
