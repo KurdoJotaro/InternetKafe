@@ -29,16 +29,13 @@
         private void InitializeComponent()
         {
             txtAd = new TextBox();
-            numYas = new NumericUpDown();
             txtFirmaAdi = new TextBox();
             txtVergiNo = new TextBox();
             btnEkle = new Button();
             dgvToptancilar = new DataGridView();
             colAd = new DataGridViewTextBoxColumn();
-            colYas = new DataGridViewTextBoxColumn();
             colFirma = new DataGridViewTextBoxColumn();
             colVergiNo = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)numYas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvToptancilar).BeginInit();
             SuspendLayout();
             // 
@@ -49,25 +46,16 @@
             txtAd.Size = new Size(125, 27);
             txtAd.TabIndex = 0;
             // 
-            // numYas
-            // 
-            numYas.Location = new Point(249, 83);
-            numYas.Minimum = new decimal(new int[] { 18, 0, 0, 0 });
-            numYas.Name = "numYas";
-            numYas.Size = new Size(150, 27);
-            numYas.TabIndex = 1;
-            numYas.Value = new decimal(new int[] { 18, 0, 0, 0 });
-            // 
             // txtFirmaAdi
             // 
-            txtFirmaAdi.Location = new Point(405, 83);
+            txtFirmaAdi.Location = new Point(249, 83);
             txtFirmaAdi.Name = "txtFirmaAdi";
             txtFirmaAdi.Size = new Size(125, 27);
             txtFirmaAdi.TabIndex = 2;
             // 
             // txtVergiNo
             // 
-            txtVergiNo.Location = new Point(547, 82);
+            txtVergiNo.Location = new Point(405, 82);
             txtVergiNo.Name = "txtVergiNo";
             txtVergiNo.Size = new Size(125, 27);
             txtVergiNo.TabIndex = 3;
@@ -87,7 +75,7 @@
             dgvToptancilar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvToptancilar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvToptancilar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvToptancilar.Columns.AddRange(new DataGridViewColumn[] { colAd, colYas, colFirma, colVergiNo });
+            dgvToptancilar.Columns.AddRange(new DataGridViewColumn[] { colAd, colFirma, colVergiNo });
             dgvToptancilar.Location = new Point(110, 220);
             dgvToptancilar.Name = "dgvToptancilar";
             dgvToptancilar.RowHeadersWidth = 51;
@@ -99,12 +87,6 @@
             colAd.HeaderText = "Ad";
             colAd.MinimumWidth = 6;
             colAd.Name = "colAd";
-            // 
-            // colYas
-            // 
-            colYas.HeaderText = "Yaş";
-            colYas.MinimumWidth = 6;
-            colYas.Name = "colYas";
             // 
             // colFirma
             // 
@@ -127,13 +109,11 @@
             Controls.Add(btnEkle);
             Controls.Add(txtVergiNo);
             Controls.Add(txtFirmaAdi);
-            Controls.Add(numYas);
             Controls.Add(txtAd);
             Name = "ToptanciForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "ToptanciForm";
             Load += ToptanciForm_Load;
-            ((System.ComponentModel.ISupportInitialize)numYas).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvToptancilar).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -142,13 +122,11 @@
         #endregion
 
         private TextBox txtAd;
-        private NumericUpDown numYas;
         private TextBox txtFirmaAdi;
         private TextBox txtVergiNo;
         private Button btnEkle;
         private DataGridView dgvToptancilar;
         private DataGridViewTextBoxColumn colAd;
-        private DataGridViewTextBoxColumn colYas;
         private DataGridViewTextBoxColumn colFirma;
         private DataGridViewTextBoxColumn colVergiNo;
     }

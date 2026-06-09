@@ -7,6 +7,7 @@ public partial class BilgisayarYonetimForm : Form
     public BilgisayarYonetimForm(KafeYonetici yonetici)
     {
         InitializeComponent();
+        FormStili.Uygula(this);
         _yonetici = yonetici;
     }
 
@@ -23,7 +24,7 @@ public partial class BilgisayarYonetimForm : Form
         dgvBilgisayarlar.Rows.Clear();
         foreach (var pc in _yonetici.Bilgisayarlar)
         {
-            dgvBilgisayarlar.Rows.Add(
+            int rowIndex = dgvBilgisayarlar.Rows.Add(
                 pc.Numara,
                 pc.RamGB + " GB",
                 pc.IslemciPuani,
@@ -33,6 +34,7 @@ public partial class BilgisayarYonetimForm : Form
                 pc.SaatlikUcret.ToString("C2"),
                 pc.DoluMu ? "Dolu" : "Boş"
             );
+            dgvBilgisayarlar.Rows[rowIndex].Tag = pc;
         }
     }
 
@@ -103,10 +105,11 @@ public partial class BilgisayarYonetimForm : Form
 
         try
         {
-            int index = dgvBilgisayarlar.SelectedRows[0].Index;
+            var pc = SeciliBilgisayarGetir();
+            if (pc == null) return;
 
             _yonetici.BilgisayarGuncelle(
-                index,
+                pc,
                 int.Parse(txtNumara.Text),
                 int.Parse(cmbRamGB.SelectedItem!.ToString()!),
                 cmbIslemci.SelectedIndex + 1,
@@ -120,13 +123,13 @@ public partial class BilgisayarYonetimForm : Form
             MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
-
+        
     private void btnSil_Click(object sender, EventArgs e)
     {
         if (dgvBilgisayarlar.SelectedRows.Count == 0) return;
 
-        int index = dgvBilgisayarlar.SelectedRows[0].Index;
-        var pc = _yonetici.Bilgisayarlar[index];
+        var pc = SeciliBilgisayarGetir();
+        if (pc == null) return;
 
         if (pc.DoluMu)
         {
@@ -151,14 +154,19 @@ public partial class BilgisayarYonetimForm : Form
     {
         if (dgvBilgisayarlar.SelectedRows.Count == 0) return;
 
-        int index = dgvBilgisayarlar.SelectedRows[0].Index;
-        if (index >= _yonetici.Bilgisayarlar.Count) return;
+        var pc = SeciliBilgisayarGetir();
+        if (pc == null) return;
 
-        var pc = _yonetici.Bilgisayarlar[index];
         txtNumara.Text = pc.Numara.ToString();
         cmbRamGB.SelectedItem = pc.RamGB.ToString();
         cmbIslemci.SelectedIndex = pc.IslemciPuani - 1;
         cmbEkranKarti.SelectedIndex = pc.EkranKartiPuani - 1;
+    }
+
+    private Bilgisayar? SeciliBilgisayarGetir()
+    {
+        if (dgvBilgisayarlar.SelectedRows.Count == 0) return null;
+        return dgvBilgisayarlar.SelectedRows[0].Tag as Bilgisayar;
     }
 
     private void FormuTemizle()

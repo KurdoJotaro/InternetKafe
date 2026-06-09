@@ -7,6 +7,7 @@ public partial class ToptanciForm : Form
     public ToptanciForm(KafeYonetici yonetici)
     {
         InitializeComponent();
+        FormStili.Uygula(this);
         _yonetici = yonetici;
     }
 
@@ -19,7 +20,7 @@ public partial class ToptanciForm : Form
         dgvToptancilar.Rows.Clear();
         foreach (var t in _yonetici.Toptancilar)
         {
-            dgvToptancilar.Rows.Add(t.Ad, t.Yas, t.FirmaAdi, t.VergiNo);
+            dgvToptancilar.Rows.Add(t.Ad, t.FirmaAdi, t.VergiNo);
         }
 
         // Veriler eklendikten sonra eski moda geri döndür
@@ -39,7 +40,7 @@ public partial class ToptanciForm : Form
             var toptanci = new Toptanci
             {
                 Ad = txtAd.Text,
-                Yas = (int)numYas.Value,
+                Yas = 18,
                 FirmaAdi = txtFirmaAdi.Text,
                 VergiNo = txtVergiNo.Text
             };
@@ -57,7 +58,6 @@ public partial class ToptanciForm : Form
     private void FormuTemizle()
     {
         txtAd.Clear();
-        numYas.Value = 18;
         txtFirmaAdi.Clear();
         txtVergiNo.Clear();
     }

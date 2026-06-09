@@ -7,6 +7,7 @@ public partial class IkramForm : Form
     public IkramForm(KafeYonetici yonetici)
     {
         InitializeComponent();
+        FormStili.Uygula(this);
         _yonetici = yonetici;
     }
 
@@ -19,15 +20,12 @@ public partial class IkramForm : Form
         if (cmbToptanci.Items.Count > 0) cmbToptanci.SelectedIndex = 0;
 
         cmbIkramAlim.Items.Clear();
-        cmbIkramSatis.Items.Clear();
         foreach (var i in _yonetici.Ikramlar)
         {
             cmbIkramAlim.Items.Add(i);
-            cmbIkramSatis.Items.Add(i);
         }
 
         if (cmbIkramAlim.Items.Count > 0) cmbIkramAlim.SelectedIndex = 0;
-        if (cmbIkramSatis.Items.Count > 0) cmbIkramSatis.SelectedIndex = 0;
     }
 
     private void GridGuncelle()
@@ -86,31 +84,6 @@ public partial class IkramForm : Form
             _yonetici.StokAlimi(ikram, toptanci, adet, fiyat);
             GridGuncelle();
             MessageBox.Show("Stok alımı kaydedildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        (Application.OpenForms["AnaForm"] as AnaForm)?.DashboardGuncelle();// Üst paneldeki bilgileri güncelle.
-    }
-
-    private void btnSat_Click(object sender, EventArgs e)
-    {
-        if (cmbIkramSatis.SelectedItem == null)
-        {
-            MessageBox.Show("Satılacak ürünü seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return;
-        }
-
-        var ikram = (Ikram)cmbIkramSatis.SelectedItem;
-        int adet = (int)numSatisAdet.Value;
-
-        try
-        {
-            _yonetici.IkramSatis(ikram, adet);
-            GridGuncelle();
-            MessageBox.Show("Satış yapıldı.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         catch (Exception ex)
         {

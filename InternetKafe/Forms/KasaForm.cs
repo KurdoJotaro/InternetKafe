@@ -7,6 +7,7 @@ public partial class KasaForm : Form
     public KasaForm(KafeYonetici yonetici)
     {
         InitializeComponent();
+        FormStili.Uygula(this);
         _yonetici = yonetici;
     }
 

@@ -7,6 +7,7 @@ public partial class MusteriYonetimForm : Form
     public MusteriYonetimForm(KafeYonetici yonetici)
     {
         InitializeComponent();
+        FormStili.Uygula(this);
         _yonetici = yonetici;
     }
 
@@ -20,13 +21,14 @@ public partial class MusteriYonetimForm : Form
         dgvMusteriler.Rows.Clear();
         foreach (var m in _yonetici.Musteriler)
         {
-            dgvMusteriler.Rows.Add(
+            int rowIndex = dgvMusteriler.Rows.Add(
                 m.Ad,
                 m.Yas,
                 m.UyelikVar ? "Evet" : "Hayır",
                 m.ToplamHarcama.ToString("C2"),
                 $"%{m.IndirimOrani * 100:0}"
             );
+            dgvMusteriler.Rows[rowIndex].Tag = m;
         }
     }
 
@@ -65,10 +67,10 @@ public partial class MusteriYonetimForm : Form
 
         try
         {
-            // Güncelleme işlemi artık senin tasarladığın mimariye uygun olarak index üzerinden yapılıyor.
-            int index = dgvMusteriler.SelectedRows[0].Index;
+            var musteri = SeciliMusteriGetir();
+            if (musteri == null) return;
 
-            _yonetici.MusteriGuncelle(index, txtAd.Text.Trim(), (int)numYas.Value, chkUyelik.Checked);
+            _yonetici.MusteriGuncelle(musteri, txtAd.Text.Trim(), (int)numYas.Value, chkUyelik.Checked);
 
             GridGuncelle();
         }
@@ -82,8 +84,8 @@ public partial class MusteriYonetimForm : Form
     {
         if (dgvMusteriler.SelectedRows.Count == 0) return;
 
-        int index = dgvMusteriler.SelectedRows[0].Index;
-        var musteri = _yonetici.Musteriler[index];
+        var musteri = SeciliMusteriGetir();
+        if (musteri == null) return;
 
         var sonuc = MessageBox.Show("Bu müşteriyi silmek istiyor musunuz?", "Onay",
             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -102,13 +104,18 @@ public partial class MusteriYonetimForm : Form
     {
         if (dgvMusteriler.SelectedRows.Count == 0) return;
 
-        int index = dgvMusteriler.SelectedRows[0].Index;
-        if (index >= _yonetici.Musteriler.Count) return;
+        var m = SeciliMusteriGetir();
+        if (m == null) return;
 
-        var m = _yonetici.Musteriler[index];
         txtAd.Text = m.Ad;
         numYas.Value = m.Yas;
         chkUyelik.Checked = m.UyelikVar;
+    }
+
+    private Musteri? SeciliMusteriGetir()
+    {
+        if (dgvMusteriler.SelectedRows.Count == 0) return null;
+        return dgvMusteriler.SelectedRows[0].Tag as Musteri;
     }
 
     private void FormuTemizle()

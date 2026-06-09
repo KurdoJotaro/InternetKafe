@@ -36,9 +36,6 @@
             cmbIkramAlim = new ComboBox();
             numAlimFiyati = new NumericUpDown();
             btnStokAl = new Button();
-            cmbIkramSatis = new ComboBox();
-            numSatisAdet = new NumericUpDown();
-            btnSat = new Button();
             dgvIkramlar = new DataGridView();
             colAd = new DataGridViewTextBoxColumn();
             colFiyat = new DataGridViewTextBoxColumn();
@@ -46,7 +43,6 @@
             ((System.ComponentModel.ISupportInitialize)numFiyat).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numAlimAdet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numAlimFiyati).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numSatisAdet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvIkramlar).BeginInit();
             SuspendLayout();
             // 
@@ -123,34 +119,6 @@
             btnStokAl.UseVisualStyleBackColor = true;
             btnStokAl.Click += btnStokAl_Click;
             // 
-            // cmbIkramSatis
-            // 
-            cmbIkramSatis.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbIkramSatis.FormattingEnabled = true;
-            cmbIkramSatis.Location = new Point(476, 32);
-            cmbIkramSatis.Name = "cmbIkramSatis";
-            cmbIkramSatis.Size = new Size(151, 28);
-            cmbIkramSatis.TabIndex = 3;
-            // 
-            // numSatisAdet
-            // 
-            numSatisAdet.Location = new Point(477, 90);
-            numSatisAdet.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numSatisAdet.Name = "numSatisAdet";
-            numSatisAdet.Size = new Size(150, 27);
-            numSatisAdet.TabIndex = 1;
-            numSatisAdet.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            // 
-            // btnSat
-            // 
-            btnSat.Location = new Point(477, 155);
-            btnSat.Name = "btnSat";
-            btnSat.Size = new Size(94, 29);
-            btnSat.TabIndex = 2;
-            btnSat.Text = "Satış Yap";
-            btnSat.UseVisualStyleBackColor = true;
-            btnSat.Click += btnSat_Click;
-            // 
             // dgvIkramlar
             // 
             dgvIkramlar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -188,13 +156,10 @@
             ClientSize = new Size(914, 586);
             Controls.Add(dgvIkramlar);
             Controls.Add(cmbIkramAlim);
-            Controls.Add(cmbIkramSatis);
             Controls.Add(cmbToptanci);
-            Controls.Add(btnSat);
             Controls.Add(btnStokAl);
             Controls.Add(btnEkle);
             Controls.Add(numAlimFiyati);
-            Controls.Add(numSatisAdet);
             Controls.Add(numAlimAdet);
             Controls.Add(numFiyat);
             Controls.Add(txtAd);
@@ -205,7 +170,6 @@
             ((System.ComponentModel.ISupportInitialize)numFiyat).EndInit();
             ((System.ComponentModel.ISupportInitialize)numAlimAdet).EndInit();
             ((System.ComponentModel.ISupportInitialize)numAlimFiyati).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numSatisAdet).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvIkramlar).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -221,9 +185,6 @@
         private ComboBox cmbIkramAlim;
         private NumericUpDown numAlimFiyati;
         private Button btnStokAl;
-        private ComboBox cmbIkramSatis;
-        private NumericUpDown numSatisAdet;
-        private Button btnSat;
         private DataGridView dgvIkramlar;
         private DataGridViewTextBoxColumn colAd;
         private DataGridViewTextBoxColumn colFiyat;

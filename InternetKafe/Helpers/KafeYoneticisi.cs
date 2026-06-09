@@ -38,7 +38,14 @@
         public void MusteriGuncelle(int index, string ad, int yas, bool uyelikVar)
         {
             if (index < 0 || index >= _musteriler.Count) throw new ArgumentOutOfRangeException(nameof(index));
-            var musteri = _musteriler[index];
+            MusteriGuncelle(_musteriler[index], ad, yas, uyelikVar);
+        }
+
+        public void MusteriGuncelle(Musteri musteri, string ad, int yas, bool uyelikVar)
+        {
+            if (musteri == null) throw new ArgumentNullException(nameof(musteri));
+            if (!_musteriler.Contains(musteri)) throw new InvalidOperationException("Bu müşteri listede bulunamadı.");
+
             musteri.Ad = ad;
             musteri.Yas = yas;
             musteri.UyelikVar = uyelikVar;
@@ -57,13 +64,22 @@
         public void BilgisayarSil(Bilgisayar bilgisayar)
         {
             if (bilgisayar == null) throw new ArgumentNullException(nameof(bilgisayar));
+            if (bilgisayar.DoluMu || _oturumlar.Any(o => o.AktifMi && o.Bilgisayar == bilgisayar))
+                throw new InvalidOperationException("Aktif oturumu olan bilgisayar silinemez!");
+
             _bilgisayarlar.Remove(bilgisayar);
         }
 
         public void BilgisayarGuncelle(int index, int numara, int ramGB, int islemciPuani, int ekranKartiPuani)
         {
             if (index < 0 || index >= _bilgisayarlar.Count) throw new ArgumentOutOfRangeException(nameof(index));
-            var pc = _bilgisayarlar[index];
+            BilgisayarGuncelle(_bilgisayarlar[index], numara, ramGB, islemciPuani, ekranKartiPuani);
+        }
+
+        public void BilgisayarGuncelle(Bilgisayar pc, int numara, int ramGB, int islemciPuani, int ekranKartiPuani)
+        {
+            if (pc == null) throw new ArgumentNullException(nameof(pc));
+            if (!_bilgisayarlar.Contains(pc)) throw new InvalidOperationException("Bu bilgisayar listede bulunamadı.");
             if (pc.Numara != numara && _bilgisayarlar.Any(b => b.Numara == numara)) throw new InvalidOperationException("Bu numara zaten var.");
 
             pc.Numara = numara;
@@ -154,21 +170,17 @@
             _toptancilar.Add(toptanci);
         }
 
-        public void IkramSatis(Ikram ikram, int adet)
+        public void OturumaIkramEkle(Oturum oturum, Ikram ikram, int adet)
         {
+            if (oturum == null) throw new ArgumentNullException(nameof(oturum));
+            if (ikram == null) throw new ArgumentNullException(nameof(ikram));
+            if (!oturum.AktifMi) throw new InvalidOperationException("Kapalı oturuma ikram eklenemez.");
+            if (adet <= 0) throw new ArgumentException("Satış adedi 0'dan büyük olmalıdır.");
             if (ikram.StokMiktari < adet)
                 throw new InvalidOperationException("Yetersiz stok!");
 
             ikram.StokMiktari -= adet;
-            decimal toplamTutar = ikram.Fiyat * adet;
-
-            _islemler.Add(new GelirGider
-            {
-                Aciklama = $"İkram Satışı: {adet}x {ikram.Ad}",
-                Tutar = toplamTutar,
-                GelirMi = true,
-                Tarih = DateTime.Now
-            });
+            oturum.IkramTutari += ikram.Fiyat * adet;
         }
 
         public void StokAlimi(Ikram ikram, Toptanci toptanci, int adet, decimal alisFiyati)

@@ -7,23 +7,32 @@ public partial class OturumForm : Form
     public OturumForm(KafeYonetici yonetici)
     {
         InitializeComponent();
+        FormStili.Uygula(this);
         _yonetici = yonetici;
     }
 
     private void CombolariDoldur()
     {
+        // 1. Müşteri ComboBox doldurma
         cmbMusteri.Items.Clear();
         foreach (var m in _yonetici.Musteriler)
             cmbMusteri.Items.Add(m);
 
         if (cmbMusteri.Items.Count > 0) cmbMusteri.SelectedIndex = 0;
 
+        // 2. Boş Bilgisayarlar ComboBox doldurma
         cmbBilgisayar.Items.Clear();
-        // Sadece boş olan bilgisayarları listeliyoruz
         foreach (var pc in _yonetici.Bilgisayarlar.Where(b => !b.DoluMu))
             cmbBilgisayar.Items.Add(pc);
 
         if (cmbBilgisayar.Items.Count > 0) cmbBilgisayar.SelectedIndex = 0;
+
+        // 3. Yeni Eklenen Alan: İkramlar ComboBox doldurma
+        cmbIkram.Items.Clear();
+        foreach (var i in _yonetici.Ikramlar)
+            cmbIkram.Items.Add(i);
+
+        if (cmbIkram.Items.Count > 0) cmbIkram.SelectedIndex = 0;
     }
 
     private void AktifOturumlariGuncelle()
@@ -38,14 +47,9 @@ public partial class OturumForm : Form
 
     private void btnOturumBaslat_Click(object sender, EventArgs e)
     {
-        if (cmbMusteri.SelectedItem == null)
+        if (cmbMusteri.SelectedItem == null || cmbBilgisayar.SelectedItem == null)
         {
-            MessageBox.Show("Müşteri seçiniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return;
-        }
-        if (cmbBilgisayar.SelectedItem == null)
-        {
-            MessageBox.Show("Boş bilgisayar seçiniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Müşteri ve boş bilgisayar seçimi zorunludur.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 
@@ -65,7 +69,43 @@ public partial class OturumForm : Form
             MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        (Application.OpenForms["AnaForm"] as AnaForm)?.DashboardGuncelle();// Üst paneldeki bilgileri güncelle.
+        (Application.OpenForms["AnaForm"] as AnaForm)?.DashboardGuncelle();
+    }
+
+    // Yeni Eklenen Metot: Seçili Masaya İkram Siparişi Satma
+    private void btnIkramSat_Click(object sender, EventArgs e)
+    {
+        if (lstAktifOturumlar.SelectedItem == null)
+        {
+            MessageBox.Show("Sipariş eklemek için önce sol listeden aktif bir oturum (masa) seçmelisiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+        if (cmbIkram.SelectedItem == null)
+        {
+            MessageBox.Show("Satılacak ürünü seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+        var oturum = (Oturum)lstAktifOturumlar.SelectedItem;
+        var ikram = (Ikram)cmbIkram.SelectedItem;
+        int adet = (int)numIkramAdet.Value;
+
+        try
+        {
+            _yonetici.OturumaIkramEkle(oturum, ikram, adet);
+
+            MessageBox.Show($"Sipariş Başarılı!\n{oturum.Bilgisayar.Numara} nolu masadaki {oturum.Musteri.Ad} isimli müşteriye {adet} adet {ikram.Ad} teslim edildi.", "Sipariş Bilgisi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            numIkramAdet.Value = 1;
+            UcretHesapla();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        (Application.OpenForms["AnaForm"] as AnaForm)?.DashboardGuncelle();
     }
 
     private void lstAktifOturumlar_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,16 +131,15 @@ public partial class OturumForm : Form
 
         var oturum = (Oturum)lstAktifOturumlar.SelectedItem;
         int dakika = (int)numDakika.Value;
-
-        // İş Kuralı: Minimum 30 dakika ücretlendirilir
         int faturalanacakDk = Math.Max(dakika, 30);
 
         decimal pcUcret = oturum.Bilgisayar.SaatlikUcret * faturalanacakDk / 60m;
         decimal indirim = pcUcret * oturum.Musteri.IndirimOrani;
-        decimal toplam = pcUcret - indirim;
+        decimal toplam = pcUcret - indirim + oturum.IkramTutari;
 
         lblBilgisayarUcreti.Text = $"PC Ücreti: {pcUcret:C2}";
         lblIndirim.Text = $"İndirim (%{oturum.Musteri.IndirimOrani * 100:0}): -{indirim:C2}";
+        lblIkramTutari.Text = $"İkram: {oturum.IkramTutari:C2}";
         lblToplamTutar.Text = $"TOPLAM: {toplam:C2}";
     }
 
@@ -134,7 +173,7 @@ public partial class OturumForm : Form
             MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        (Application.OpenForms["AnaForm"] as AnaForm)?.DashboardGuncelle();// Üst paneldeki bilgileri güncelle.
+        (Application.OpenForms["AnaForm"] as AnaForm)?.DashboardGuncelle();
     }
 
     private void OturumBilgileriniTemizle()
@@ -144,6 +183,7 @@ public partial class OturumForm : Form
         lblBaslangic.Text = "Başlangıç: -";
         lblBilgisayarUcreti.Text = "PC Ücreti: -";
         lblIndirim.Text = "İndirim: -";
+        lblIkramTutari.Text = "İkram: -";
         lblToplamTutar.Text = "TOPLAM: -";
     }
 

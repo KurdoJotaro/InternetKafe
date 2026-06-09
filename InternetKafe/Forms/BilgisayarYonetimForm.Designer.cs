@@ -52,7 +52,7 @@
             // 
             // txtNumara
             // 
-            txtNumara.Location = new Point(120, 46);
+            txtNumara.Location = new Point(120, 143);
             txtNumara.Name = "txtNumara";
             txtNumara.Size = new Size(125, 27);
             txtNumara.TabIndex = 0;
@@ -62,35 +62,38 @@
             cmbRamGB.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbRamGB.FormattingEnabled = true;
             cmbRamGB.Items.AddRange(new object[] { "4", "8", "16", "32", "64" });
-            cmbRamGB.Location = new Point(120, 99);
+            cmbRamGB.Location = new Point(107, 46);
             cmbRamGB.Name = "cmbRamGB";
             cmbRamGB.Size = new Size(151, 28);
             cmbRamGB.TabIndex = 1;
+            cmbRamGB.SelectedIndexChanged += cmbRamGB_SelectedIndexChanged;
             // 
             // cmbIslemci
             // 
             cmbIslemci.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbIslemci.FormattingEnabled = true;
             cmbIslemci.Items.AddRange(new object[] { "Düşük", "Orta", "Yüksek", "Çok Yüksek" });
-            cmbIslemci.Location = new Point(120, 138);
+            cmbIslemci.Location = new Point(278, 46);
             cmbIslemci.Name = "cmbIslemci";
             cmbIslemci.Size = new Size(151, 28);
             cmbIslemci.TabIndex = 2;
+            cmbIslemci.SelectedIndexChanged += cmbIslemci_SelectedIndexChanged;
             // 
             // cmbEkranKarti
             // 
             cmbEkranKarti.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEkranKarti.FormattingEnabled = true;
             cmbEkranKarti.Items.AddRange(new object[] { "Düşük", "Orta", "Yüksek", "Çok Yüksek" });
-            cmbEkranKarti.Location = new Point(120, 172);
+            cmbEkranKarti.Location = new Point(435, 46);
             cmbEkranKarti.Name = "cmbEkranKarti";
             cmbEkranKarti.Size = new Size(151, 28);
             cmbEkranKarti.TabIndex = 3;
+            cmbEkranKarti.SelectedIndexChanged += cmbEkranKarti_SelectedIndexChanged;
             // 
             // lblPerformansPuani
             // 
             lblPerformansPuani.AutoSize = true;
-            lblPerformansPuani.Location = new Point(303, 99);
+            lblPerformansPuani.Location = new Point(120, 104);
             lblPerformansPuani.Name = "lblPerformansPuani";
             lblPerformansPuani.Size = new Size(96, 20);
             lblPerformansPuani.TabIndex = 4;
@@ -99,7 +102,7 @@
             // lblKategori
             // 
             lblKategori.AutoSize = true;
-            lblKategori.Location = new Point(303, 138);
+            lblKategori.Location = new Point(267, 104);
             lblKategori.Name = "lblKategori";
             lblKategori.Size = new Size(79, 20);
             lblKategori.TabIndex = 5;
@@ -108,7 +111,7 @@
             // lblSaatlikUcret
             // 
             lblSaatlikUcret.AutoSize = true;
-            lblSaatlikUcret.Location = new Point(303, 199);
+            lblSaatlikUcret.Location = new Point(418, 99);
             lblSaatlikUcret.Name = "lblSaatlikUcret";
             lblSaatlikUcret.Size = new Size(57, 20);
             lblSaatlikUcret.TabIndex = 6;
@@ -116,7 +119,7 @@
             // 
             // btnEkle
             // 
-            btnEkle.Location = new Point(416, 95);
+            btnEkle.Location = new Point(759, 90);
             btnEkle.Name = "btnEkle";
             btnEkle.Size = new Size(94, 29);
             btnEkle.TabIndex = 7;
@@ -126,7 +129,7 @@
             // 
             // btnGuncelle
             // 
-            btnGuncelle.Location = new Point(416, 138);
+            btnGuncelle.Location = new Point(759, 345);
             btnGuncelle.Name = "btnGuncelle";
             btnGuncelle.Size = new Size(94, 29);
             btnGuncelle.TabIndex = 8;
@@ -136,7 +139,7 @@
             // 
             // btnSil
             // 
-            btnSil.Location = new Point(406, 195);
+            btnSil.Location = new Point(736, 484);
             btnSil.Name = "btnSil";
             btnSil.Size = new Size(94, 29);
             btnSil.TabIndex = 9;
@@ -153,7 +156,7 @@
             dgvBilgisayarlar.Location = new Point(26, 241);
             dgvBilgisayarlar.Name = "dgvBilgisayarlar";
             dgvBilgisayarlar.RowHeadersWidth = 51;
-            dgvBilgisayarlar.Size = new Size(859, 324);
+            dgvBilgisayarlar.Size = new Size(636, 324);
             dgvBilgisayarlar.TabIndex = 10;
             // 
             // colNumara
