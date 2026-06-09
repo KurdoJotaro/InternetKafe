@@ -69,6 +69,7 @@
             btnOturumBaslat.TabIndex = 2;
             btnOturumBaslat.Text = "Oturum Başlat";
             btnOturumBaslat.UseVisualStyleBackColor = true;
+            btnOturumBaslat.Click += btnOturumBaslat_Click;
             // 
             // lstAktifOturumlar
             // 
@@ -150,6 +151,7 @@
             btnOturumBitir.TabIndex = 11;
             btnOturumBitir.Text = "Oturumu Kapat";
             btnOturumBitir.UseVisualStyleBackColor = true;
+            btnOturumBitir.Click += btnOturumBitir_Click;
             // 
             // OturumForm
             // 

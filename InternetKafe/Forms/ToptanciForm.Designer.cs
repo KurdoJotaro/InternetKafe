@@ -80,6 +80,7 @@
             btnEkle.TabIndex = 4;
             btnEkle.Text = "Ekle";
             btnEkle.UseVisualStyleBackColor = true;
+            btnEkle.Click += btnEkle_Click;
             // 
             // dgvToptancilar
             // 

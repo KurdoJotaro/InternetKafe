@@ -74,6 +74,7 @@
             btnEkle.TabIndex = 2;
             btnEkle.Text = "Ürün Ekle";
             btnEkle.UseVisualStyleBackColor = true;
+            btnEkle.Click += btnEkle_Click;
             // 
             // cmbToptanci
             // 
@@ -120,6 +121,7 @@
             btnStokAl.TabIndex = 2;
             btnStokAl.Text = "Stok Al";
             btnStokAl.UseVisualStyleBackColor = true;
+            btnStokAl.Click += btnStokAl_Click;
             // 
             // cmbIkramSatis
             // 
@@ -147,6 +149,7 @@
             btnSat.TabIndex = 2;
             btnSat.Text = "Satış Yap";
             btnSat.UseVisualStyleBackColor = true;
+            btnSat.Click += btnSat_Click;
             // 
             // dgvIkramlar
             // 

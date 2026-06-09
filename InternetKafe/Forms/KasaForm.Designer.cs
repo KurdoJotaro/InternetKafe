@@ -37,15 +37,15 @@
             // lstIslemler
             // 
             lstIslemler.FormattingEnabled = true;
-            lstIslemler.Location = new Point(106, 79);
+            lstIslemler.Location = new Point(106, 64);
             lstIslemler.Name = "lstIslemler";
-            lstIslemler.Size = new Size(150, 104);
+            lstIslemler.Size = new Size(604, 344);
             lstIslemler.TabIndex = 0;
             // 
             // lblToplamGelir
             // 
             lblToplamGelir.AutoSize = true;
-            lblToplamGelir.Location = new Point(285, 82);
+            lblToplamGelir.Location = new Point(106, 26);
             lblToplamGelir.Name = "lblToplamGelir";
             lblToplamGelir.Size = new Size(136, 20);
             lblToplamGelir.TabIndex = 1;
@@ -54,7 +54,7 @@
             // lblToplamGider
             // 
             lblToplamGider.AutoSize = true;
-            lblToplamGider.Location = new Point(296, 113);
+            lblToplamGider.Location = new Point(248, 26);
             lblToplamGider.Name = "lblToplamGider";
             lblToplamGider.Size = new Size(141, 20);
             lblToplamGider.TabIndex = 2;
@@ -63,7 +63,7 @@
             // lblNetKar
             // 
             lblNetKar.AutoSize = true;
-            lblNetKar.Location = new Point(280, 153);
+            lblNetKar.Location = new Point(415, 26);
             lblNetKar.Name = "lblNetKar";
             lblNetKar.Size = new Size(101, 20);
             lblNetKar.TabIndex = 3;
