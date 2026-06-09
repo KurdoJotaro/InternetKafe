@@ -35,17 +35,21 @@
             panel1 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel2 = new Panel();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            lblIslemGecmisi = new Label();
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // lstIslemler
             // 
+            lstIslemler.Dock = DockStyle.Fill;
             lstIslemler.FormattingEnabled = true;
-            lstIslemler.Location = new Point(104, 173);
+            lstIslemler.Location = new Point(3, 120);
             lstIslemler.Name = "lstIslemler";
-            lstIslemler.Size = new Size(290, 184);
+            lstIslemler.Size = new Size(673, 463);
             lstIslemler.TabIndex = 0;
             // 
             // lblToplamGelir
@@ -59,7 +63,7 @@
             lblToplamGelir.Name = "lblToplamGelir";
             lblToplamGelir.Size = new Size(229, 195);
             lblToplamGelir.TabIndex = 1;
-            lblToplamGelir.Text = "Toplam Gelir:\r\n₺0,00";
+            lblToplamGelir.Text = "Toplam\r\nGelir:\r\n₺0,00";
             lblToplamGelir.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblToplamGider
@@ -117,12 +121,39 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(lstIslemler);
+            panel2.Controls.Add(tableLayoutPanel2);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(235, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(679, 586);
             panel2.TabIndex = 5;
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 1;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Controls.Add(lstIslemler, 0, 1);
+            tableLayoutPanel2.Controls.Add(lblIslemGecmisi, 0, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(0, 0);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 2;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
+            tableLayoutPanel2.Size = new Size(679, 586);
+            tableLayoutPanel2.TabIndex = 1;
+            // 
+            // lblIslemGecmisi
+            // 
+            lblIslemGecmisi.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblIslemGecmisi.AutoSize = true;
+            lblIslemGecmisi.Font = new Font("Impact", 36F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblIslemGecmisi.Location = new Point(3, 0);
+            lblIslemGecmisi.Name = "lblIslemGecmisi";
+            lblIslemGecmisi.Size = new Size(673, 117);
+            lblIslemGecmisi.TabIndex = 1;
+            lblIslemGecmisi.Text = "İŞLEM GEÇMİŞİ";
+            lblIslemGecmisi.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // KasaForm
             // 
@@ -139,6 +170,8 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             panel2.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -151,5 +184,7 @@
         private Panel panel1;
         private Panel panel2;
         private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Label lblIslemGecmisi;
     }
 }

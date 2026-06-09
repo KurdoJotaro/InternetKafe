@@ -40,41 +40,70 @@
             colUyelik = new DataGridViewTextBoxColumn();
             colToplamHarcama = new DataGridViewTextBoxColumn();
             colIndirimOrani = new DataGridViewTextBoxColumn();
+            lblMusteriAd = new Label();
+            lblMusteriYas = new Label();
+            lblMusteriUyelik = new Label();
+            panel1 = new Panel();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            panel2 = new Panel();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            tableLayoutPanel4 = new TableLayoutPanel();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            panel3 = new Panel();
+            tableLayoutPanel6 = new TableLayoutPanel();
+            tableLayoutPanel7 = new TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)numYas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvMusteriler).BeginInit();
+            panel1.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            panel2.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
+            panel3.SuspendLayout();
+            tableLayoutPanel6.SuspendLayout();
+            tableLayoutPanel7.SuspendLayout();
             SuspendLayout();
             // 
             // txtAd
             // 
-            txtAd.Location = new Point(104, 144);
+            txtAd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txtAd.Font = new Font("Segoe UI", 25.8000011F);
+            txtAd.Location = new Point(3, 84);
             txtAd.Name = "txtAd";
-            txtAd.Size = new Size(125, 27);
+            txtAd.Size = new Size(215, 65);
             txtAd.TabIndex = 0;
             // 
             // numYas
             // 
-            numYas.Location = new Point(264, 147);
+            numYas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            numYas.Font = new Font("Segoe UI", 25.8000011F);
+            numYas.Location = new Point(3, 84);
             numYas.Minimum = new decimal(new int[] { 18, 0, 0, 0 });
             numYas.Name = "numYas";
-            numYas.Size = new Size(150, 27);
+            numYas.Size = new Size(215, 65);
             numYas.TabIndex = 1;
             numYas.Value = new decimal(new int[] { 18, 0, 0, 0 });
             // 
             // chkUyelik
             // 
+            chkUyelik.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             chkUyelik.AutoSize = true;
-            chkUyelik.Location = new Point(435, 144);
+            chkUyelik.Location = new Point(3, 84);
             chkUyelik.Name = "chkUyelik";
-            chkUyelik.Size = new Size(96, 24);
+            chkUyelik.Size = new Size(215, 76);
             chkUyelik.TabIndex = 2;
             chkUyelik.Text = "Üyelik Var";
             chkUyelik.UseVisualStyleBackColor = true;
             // 
             // btnEkle
             // 
-            btnEkle.Location = new Point(559, 121);
+            btnEkle.Dock = DockStyle.Fill;
+            btnEkle.Location = new Point(684, 3);
             btnEkle.Name = "btnEkle";
-            btnEkle.Size = new Size(94, 29);
+            btnEkle.Size = new Size(221, 163);
             btnEkle.TabIndex = 3;
             btnEkle.Text = "Ekle";
             btnEkle.UseVisualStyleBackColor = true;
@@ -82,9 +111,10 @@
             // 
             // btnGuncelle
             // 
-            btnGuncelle.Location = new Point(584, 160);
+            btnGuncelle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnGuncelle.Location = new Point(3, 3);
             btnGuncelle.Name = "btnGuncelle";
-            btnGuncelle.Size = new Size(94, 29);
+            btnGuncelle.Size = new Size(215, 193);
             btnGuncelle.TabIndex = 4;
             btnGuncelle.Text = "Güncelle";
             btnGuncelle.UseVisualStyleBackColor = true;
@@ -92,9 +122,10 @@
             // 
             // btnSil
             // 
-            btnSil.Location = new Point(584, 218);
+            btnSil.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnSil.Location = new Point(3, 202);
             btnSil.Name = "btnSil";
-            btnSil.Size = new Size(94, 29);
+            btnSil.Size = new Size(215, 194);
             btnSil.TabIndex = 5;
             btnSil.Text = "Sil";
             btnSil.UseVisualStyleBackColor = true;
@@ -106,10 +137,10 @@
             dgvMusteriler.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvMusteriler.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMusteriler.Columns.AddRange(new DataGridViewColumn[] { colAd, colYas, colUyelik, colToplamHarcama, colIndirimOrani });
-            dgvMusteriler.Location = new Point(4, 250);
+            dgvMusteriler.Location = new Point(3, 3);
             dgvMusteriler.Name = "dgvMusteriler";
             dgvMusteriler.RowHeadersWidth = 51;
-            dgvMusteriler.Size = new Size(898, 324);
+            dgvMusteriler.Size = new Size(675, 399);
             dgvMusteriler.TabIndex = 6;
             // 
             // colAd
@@ -142,26 +173,199 @@
             colIndirimOrani.MinimumWidth = 6;
             colIndirimOrani.Name = "colIndirimOrani";
             // 
+            // lblMusteriAd
+            // 
+            lblMusteriAd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblMusteriAd.AutoSize = true;
+            lblMusteriAd.Location = new Point(3, 0);
+            lblMusteriAd.Name = "lblMusteriAd";
+            lblMusteriAd.Size = new Size(215, 81);
+            lblMusteriAd.TabIndex = 7;
+            lblMusteriAd.Text = "Müşteri Ad";
+            lblMusteriAd.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblMusteriYas
+            // 
+            lblMusteriYas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblMusteriYas.AutoSize = true;
+            lblMusteriYas.Location = new Point(3, 0);
+            lblMusteriYas.Name = "lblMusteriYas";
+            lblMusteriYas.Size = new Size(215, 81);
+            lblMusteriYas.TabIndex = 7;
+            lblMusteriYas.Text = "Müşteri Yaş";
+            lblMusteriYas.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblMusteriUyelik
+            // 
+            lblMusteriUyelik.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblMusteriUyelik.AutoSize = true;
+            lblMusteriUyelik.Location = new Point(3, 0);
+            lblMusteriUyelik.Name = "lblMusteriUyelik";
+            lblMusteriUyelik.Size = new Size(215, 81);
+            lblMusteriUyelik.TabIndex = 7;
+            lblMusteriUyelik.Text = "Müşteri Üyelik";
+            lblMusteriUyelik.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(tableLayoutPanel1);
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(914, 586);
+            panel1.TabIndex = 8;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(panel2, 0, 0);
+            tableLayoutPanel1.Controls.Add(panel3, 0, 1);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
+            tableLayoutPanel1.Size = new Size(914, 586);
+            tableLayoutPanel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(tableLayoutPanel2);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(3, 3);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(908, 169);
+            panel2.TabIndex = 0;
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 4;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 0);
+            tableLayoutPanel2.Controls.Add(btnEkle, 3, 0);
+            tableLayoutPanel2.Controls.Add(tableLayoutPanel4, 1, 0);
+            tableLayoutPanel2.Controls.Add(tableLayoutPanel5, 2, 0);
+            tableLayoutPanel2.Location = new Point(0, 0);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Size = new Size(908, 169);
+            tableLayoutPanel2.TabIndex = 8;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 1;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Controls.Add(lblMusteriAd, 0, 0);
+            tableLayoutPanel3.Controls.Add(txtAd, 0, 1);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(3, 3);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 2;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Size = new Size(221, 163);
+            tableLayoutPanel3.TabIndex = 0;
+            // 
+            // tableLayoutPanel4
+            // 
+            tableLayoutPanel4.ColumnCount = 1;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.Controls.Add(lblMusteriYas, 0, 0);
+            tableLayoutPanel4.Controls.Add(numYas, 0, 1);
+            tableLayoutPanel4.Dock = DockStyle.Fill;
+            tableLayoutPanel4.Location = new Point(230, 3);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 2;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.Size = new Size(221, 163);
+            tableLayoutPanel4.TabIndex = 1;
+            // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.ColumnCount = 1;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.Controls.Add(lblMusteriUyelik, 0, 0);
+            tableLayoutPanel5.Controls.Add(chkUyelik, 0, 1);
+            tableLayoutPanel5.Dock = DockStyle.Fill;
+            tableLayoutPanel5.Location = new Point(457, 3);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 2;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.Size = new Size(221, 163);
+            tableLayoutPanel5.TabIndex = 2;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(tableLayoutPanel6);
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(3, 178);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(908, 405);
+            panel3.TabIndex = 1;
+            // 
+            // tableLayoutPanel6
+            // 
+            tableLayoutPanel6.ColumnCount = 2;
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel6.Controls.Add(dgvMusteriler, 0, 0);
+            tableLayoutPanel6.Controls.Add(tableLayoutPanel7, 1, 0);
+            tableLayoutPanel6.Location = new Point(0, 0);
+            tableLayoutPanel6.Name = "tableLayoutPanel6";
+            tableLayoutPanel6.RowCount = 1;
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.Size = new Size(908, 405);
+            tableLayoutPanel6.TabIndex = 7;
+            // 
+            // tableLayoutPanel7
+            // 
+            tableLayoutPanel7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel7.ColumnCount = 1;
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel7.Controls.Add(btnGuncelle, 0, 0);
+            tableLayoutPanel7.Controls.Add(btnSil, 0, 1);
+            tableLayoutPanel7.Location = new Point(684, 3);
+            tableLayoutPanel7.Name = "tableLayoutPanel7";
+            tableLayoutPanel7.RowCount = 2;
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel7.Size = new Size(221, 399);
+            tableLayoutPanel7.TabIndex = 7;
+            // 
             // MusteriYonetimForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914, 586);
-            Controls.Add(dgvMusteriler);
-            Controls.Add(btnSil);
-            Controls.Add(btnGuncelle);
-            Controls.Add(btnEkle);
-            Controls.Add(chkUyelik);
-            Controls.Add(numYas);
-            Controls.Add(txtAd);
+            Controls.Add(panel1);
             Name = "MusteriYonetimForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "MusteriYonetimForm";
             Load += MusteriYonetimForm_Load;
             ((System.ComponentModel.ISupportInitialize)numYas).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvMusteriler).EndInit();
+            panel1.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
+            tableLayoutPanel4.ResumeLayout(false);
+            tableLayoutPanel4.PerformLayout();
+            tableLayoutPanel5.ResumeLayout(false);
+            tableLayoutPanel5.PerformLayout();
+            panel3.ResumeLayout(false);
+            tableLayoutPanel6.ResumeLayout(false);
+            tableLayoutPanel7.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -178,5 +382,18 @@
         private DataGridViewTextBoxColumn colUyelik;
         private DataGridViewTextBoxColumn colToplamHarcama;
         private DataGridViewTextBoxColumn colIndirimOrani;
+        private Label lblMusteriAd;
+        private Label lblMusteriYas;
+        private Label lblMusteriUyelik;
+        private Panel panel1;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel2;
+        private Panel panel3;
+        private TableLayoutPanel tableLayoutPanel2;
+        private TableLayoutPanel tableLayoutPanel3;
+        private TableLayoutPanel tableLayoutPanel4;
+        private TableLayoutPanel tableLayoutPanel5;
+        private TableLayoutPanel tableLayoutPanel6;
+        private TableLayoutPanel tableLayoutPanel7;
     }
 }
