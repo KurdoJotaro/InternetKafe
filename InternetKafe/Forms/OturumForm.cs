@@ -64,6 +64,8 @@ public partial class OturumForm : Form
         {
             MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        (Application.OpenForms["AnaForm"] as AnaForm)?.DashboardGuncelle();// Üst paneldeki bilgileri güncelle.
     }
 
     private void lstAktifOturumlar_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,6 +133,8 @@ public partial class OturumForm : Form
         {
             MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        (Application.OpenForms["AnaForm"] as AnaForm)?.DashboardGuncelle();// Üst paneldeki bilgileri güncelle.
     }
 
     private void OturumBilgileriniTemizle()

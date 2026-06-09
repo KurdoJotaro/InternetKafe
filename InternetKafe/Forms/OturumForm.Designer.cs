@@ -73,10 +73,11 @@
             // 
             // lstAktifOturumlar
             // 
+            lstAktifOturumlar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lstAktifOturumlar.FormattingEnabled = true;
             lstAktifOturumlar.Location = new Point(162, 225);
             lstAktifOturumlar.Name = "lstAktifOturumlar";
-            lstAktifOturumlar.Size = new Size(150, 104);
+            lstAktifOturumlar.Size = new Size(264, 224);
             lstAktifOturumlar.TabIndex = 3;
             // 
             // numDakika
@@ -157,7 +158,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 586);
             Controls.Add(btnOturumBitir);
             Controls.Add(lblToplamTutar);
             Controls.Add(lblIndirim);
@@ -171,6 +172,7 @@
             Controls.Add(cmbBilgisayar);
             Controls.Add(cmbMusteri);
             Name = "OturumForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "OturumForm";
             Load += OturumForm_Load;
             ((System.ComponentModel.ISupportInitialize)numDakika).EndInit();

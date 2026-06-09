@@ -91,6 +91,8 @@ public partial class IkramForm : Form
         {
             MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        (Application.OpenForms["AnaForm"] as AnaForm)?.DashboardGuncelle();// Üst paneldeki bilgileri güncelle.
     }
 
     private void btnSat_Click(object sender, EventArgs e)
@@ -114,6 +116,8 @@ public partial class IkramForm : Form
         {
             MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        (Application.OpenForms["AnaForm"] as AnaForm)?.DashboardGuncelle();// Üst paneldeki bilgileri güncelle.
     }
 
     private void IkramForm_Load(object sender, EventArgs e)

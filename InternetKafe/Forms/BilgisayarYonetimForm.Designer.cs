@@ -146,13 +146,14 @@
             // 
             // dgvBilgisayarlar
             // 
+            dgvBilgisayarlar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvBilgisayarlar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBilgisayarlar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBilgisayarlar.Columns.AddRange(new DataGridViewColumn[] { colNumara, colRam, colIslemci, colEkranKarti, colPerformans, colKategori, colSaatlikUcret, colDurum });
             dgvBilgisayarlar.Location = new Point(26, 241);
             dgvBilgisayarlar.Name = "dgvBilgisayarlar";
             dgvBilgisayarlar.RowHeadersWidth = 51;
-            dgvBilgisayarlar.Size = new Size(745, 188);
+            dgvBilgisayarlar.Size = new Size(859, 324);
             dgvBilgisayarlar.TabIndex = 10;
             // 
             // colNumara
@@ -207,7 +208,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 586);
             Controls.Add(dgvBilgisayarlar);
             Controls.Add(btnSil);
             Controls.Add(btnGuncelle);
@@ -220,6 +221,7 @@
             Controls.Add(cmbRamGB);
             Controls.Add(txtNumara);
             Name = "BilgisayarYonetimForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "BilgisayarYonetimForm";
             Load += BilgisayarYonetimForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvBilgisayarlar).EndInit();

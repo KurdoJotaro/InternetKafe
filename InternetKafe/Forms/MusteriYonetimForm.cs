@@ -55,6 +55,8 @@ public partial class MusteriYonetimForm : Form
         {
             MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        (Application.OpenForms["AnaForm"] as AnaForm)?.DashboardGuncelle();// Üst paneldeki bilgileri güncelle.
     }
 
     private void btnGuncelle_Click(object sender, EventArgs e)
@@ -92,6 +94,8 @@ public partial class MusteriYonetimForm : Form
             GridGuncelle();
             FormuTemizle();
         }
+
+        (Application.OpenForms["AnaForm"] as AnaForm)?.DashboardGuncelle();// Üst paneldeki bilgileri güncelle.
     }
 
     private void dgvMusteriler_SelectionChanged(object sender, EventArgs e)

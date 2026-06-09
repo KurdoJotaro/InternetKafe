@@ -102,13 +102,14 @@
             // 
             // dgvMusteriler
             // 
+            dgvMusteriler.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvMusteriler.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvMusteriler.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMusteriler.Columns.AddRange(new DataGridViewColumn[] { colAd, colYas, colUyelik, colToplamHarcama, colIndirimOrani });
             dgvMusteriler.Location = new Point(4, 250);
             dgvMusteriler.Name = "dgvMusteriler";
             dgvMusteriler.RowHeadersWidth = 51;
-            dgvMusteriler.Size = new Size(784, 188);
+            dgvMusteriler.Size = new Size(898, 324);
             dgvMusteriler.TabIndex = 6;
             // 
             // colAd
@@ -145,7 +146,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 586);
             Controls.Add(dgvMusteriler);
             Controls.Add(btnSil);
             Controls.Add(btnGuncelle);
@@ -154,6 +155,7 @@
             Controls.Add(numYas);
             Controls.Add(txtAd);
             Name = "MusteriYonetimForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "MusteriYonetimForm";
             Load += MusteriYonetimForm_Load;
             ((System.ComponentModel.ISupportInitialize)numYas).EndInit();

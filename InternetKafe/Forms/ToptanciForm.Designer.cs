@@ -84,13 +84,14 @@
             // 
             // dgvToptancilar
             // 
+            dgvToptancilar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvToptancilar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvToptancilar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvToptancilar.Columns.AddRange(new DataGridViewColumn[] { colAd, colYas, colFirma, colVergiNo });
             dgvToptancilar.Location = new Point(110, 220);
             dgvToptancilar.Name = "dgvToptancilar";
             dgvToptancilar.RowHeadersWidth = 51;
-            dgvToptancilar.Size = new Size(588, 188);
+            dgvToptancilar.Size = new Size(702, 324);
             dgvToptancilar.TabIndex = 5;
             // 
             // colAd
@@ -121,7 +122,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 586);
             Controls.Add(dgvToptancilar);
             Controls.Add(btnEkle);
             Controls.Add(txtVergiNo);
@@ -129,6 +130,7 @@
             Controls.Add(numYas);
             Controls.Add(txtAd);
             Name = "ToptanciForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "ToptanciForm";
             Load += ToptanciForm_Load;
             ((System.ComponentModel.ISupportInitialize)numYas).EndInit();

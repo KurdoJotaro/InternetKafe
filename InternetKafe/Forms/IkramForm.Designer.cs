@@ -153,13 +153,14 @@
             // 
             // dgvIkramlar
             // 
+            dgvIkramlar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvIkramlar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvIkramlar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvIkramlar.Columns.AddRange(new DataGridViewColumn[] { colAd, colFiyat, colStok });
             dgvIkramlar.Location = new Point(117, 263);
             dgvIkramlar.Name = "dgvIkramlar";
             dgvIkramlar.RowHeadersWidth = 51;
-            dgvIkramlar.Size = new Size(598, 188);
+            dgvIkramlar.Size = new Size(712, 324);
             dgvIkramlar.TabIndex = 4;
             // 
             // colAd
@@ -184,7 +185,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 586);
             Controls.Add(dgvIkramlar);
             Controls.Add(cmbIkramAlim);
             Controls.Add(cmbIkramSatis);
@@ -198,6 +199,7 @@
             Controls.Add(numFiyat);
             Controls.Add(txtAd);
             Name = "IkramForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "IkramForm";
             Load += IkramForm_Load;
             ((System.ComponentModel.ISupportInitialize)numFiyat).EndInit();
