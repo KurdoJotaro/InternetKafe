@@ -59,4 +59,24 @@ public partial class AnaForm : Form
         form.ShowDialog();
         DashboardGuncelle();
     }
+
+    private void AnaForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        try
+        {
+            var güncelVeri = _yonetici.VerileriDisaAktar();
+            DosyaIslemleri.VerileriKaydet(güncelVeri);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Veriler kaydedilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private void btnKasaRapor_Click(object sender, EventArgs e)
+    {
+        using var form = new KasaForm(_yonetici);
+        form.ShowDialog();
+        DashboardGuncelle();
+    }
 }

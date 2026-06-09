@@ -38,6 +38,7 @@
             lblBugunkuGelir = new Label();
             btnToptancilar = new Button();
             btnIkramlar = new Button();
+            btnKasaRapor = new Button();
             SuspendLayout();
             // 
             // btnMusteriler
@@ -135,11 +136,22 @@
             btnIkramlar.UseVisualStyleBackColor = true;
             btnIkramlar.Click += btnIkramlar_Click;
             // 
+            // btnKasaRapor
+            // 
+            btnKasaRapor.Location = new Point(489, 187);
+            btnKasaRapor.Name = "btnKasaRapor";
+            btnKasaRapor.Size = new Size(147, 29);
+            btnKasaRapor.TabIndex = 10;
+            btnKasaRapor.Text = "Kasa ve Raporlar";
+            btnKasaRapor.UseVisualStyleBackColor = true;
+            btnKasaRapor.Click += btnKasaRapor_Click;
+            // 
             // AnaForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnKasaRapor);
             Controls.Add(btnIkramlar);
             Controls.Add(btnToptancilar);
             Controls.Add(lblBugunkuGelir);
@@ -152,6 +164,7 @@
             Controls.Add(btnMusteriler);
             Name = "AnaForm";
             Text = "AnaForm";
+            FormClosing += AnaForm_FormClosing;
             Load += AnaForm_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -169,5 +182,6 @@
         private Label lblBugunkuGelir;
         private Button btnToptancilar;
         private Button btnIkramlar;
+        private Button btnKasaRapor;
     }
 }

@@ -187,5 +187,39 @@
                 Tarih = DateTime.Now
             });
         }
+        // ==========================================
+        // VERİ KAYIT VE YÜKLEME
+        // ==========================================
+        public KafeVerisi VerileriDisaAktar()
+        {
+            return new KafeVerisi
+            {
+                Musteriler = _musteriler.ToList(),
+                Bilgisayarlar = _bilgisayarlar.ToList(),
+                Oturumlar = _oturumlar.ToList(),
+                Islemler = _islemler.ToList(),
+                Ikramlar = _ikramlar.ToList(),
+                Toptancilar = _toptancilar.ToList()
+            };
+        }
+
+        public void VerileriIceAktar(KafeVerisi veri)
+        {
+            if (veri == null) return;
+
+            _musteriler.Clear();
+            _bilgisayarlar.Clear();
+            _oturumlar.Clear();
+            _islemler.Clear();
+            _ikramlar.Clear();
+            _toptancilar.Clear();
+
+            _musteriler.AddRange(veri.Musteriler);
+            _bilgisayarlar.AddRange(veri.Bilgisayarlar);
+            _oturumlar.AddRange(veri.Oturumlar);
+            _islemler.AddRange(veri.Islemler);
+            _ikramlar.AddRange(veri.Ikramlar);
+            _toptancilar.AddRange(veri.Toptancilar);
+        }
     }
 }
