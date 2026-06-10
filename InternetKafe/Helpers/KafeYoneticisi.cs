@@ -161,7 +161,20 @@
         public void IkramEkle(Ikram ikram)
         {
             if (ikram == null) throw new ArgumentNullException(nameof(ikram));
+            if (string.IsNullOrWhiteSpace(ikram.Ad)) throw new ArgumentException("Ürün adı boş olamaz.");
+            if (ikram.Fiyat <= 0) throw new ArgumentException("Ürün satış fiyatı 0'dan büyük olmalıdır.");
+            if (_ikramlar.Any(i => string.Equals(i.Ad, ikram.Ad, StringComparison.CurrentCultureIgnoreCase)))
+                throw new InvalidOperationException("Bu ürün adı zaten kayıtlı.");
+
             _ikramlar.Add(ikram);
+        }
+
+        public void IkramSil(Ikram ikram)
+        {
+            if (ikram == null) throw new ArgumentNullException(nameof(ikram));
+            if (!_ikramlar.Contains(ikram)) throw new InvalidOperationException("Bu ürün listede bulunamadı.");
+
+            _ikramlar.Remove(ikram);
         }
 
         public void ToptanciEkle(Toptanci toptanci)
@@ -185,8 +198,10 @@
 
         public void StokAlimi(Ikram ikram, Toptanci toptanci, int adet, decimal alisFiyati)
         {
+            if (ikram == null) throw new ArgumentNullException(nameof(ikram));
+            if (toptanci == null) throw new ArgumentNullException(nameof(toptanci));
             if (adet <= 0) throw new ArgumentException("Alım adedi 0'dan büyük olmalıdır.");
-            if (alisFiyati < 0) throw new ArgumentException("Alış fiyatı negatif olamaz.");
+            if (alisFiyati <= 0) throw new ArgumentException("Alış fiyatı 0'dan büyük olmalıdır.");
 
             ikram.StokMiktari += adet;
             decimal toplamGider = alisFiyati * adet;
@@ -232,6 +247,26 @@
             _islemler.AddRange(veri.Islemler);
             _ikramlar.AddRange(veri.Ikramlar);
             _toptancilar.AddRange(veri.Toptancilar);
+        }
+
+        public void VarsayilanVerileriYukle()
+        {
+            _musteriler.Clear();
+            _bilgisayarlar.Clear();
+            _oturumlar.Clear();
+            _islemler.Clear();
+            _ikramlar.Clear();
+            _toptancilar.Clear();
+
+            MusteriEkle(new Musteri { Ad = "Ahmet Yılmaz", Yas = 22, UyelikVar = true });
+            MusteriEkle(new Musteri { Ad = "Mehmet Kaya", Yas = 19, UyelikVar = false });
+
+            BilgisayarEkle(new Bilgisayar { Numara = 1, RamGB = 8, IslemciPuani = 2, EkranKartiPuani = 2 });
+            BilgisayarEkle(new Bilgisayar { Numara = 2, RamGB = 16, IslemciPuani = 3, EkranKartiPuani = 3 });
+            BilgisayarEkle(new Bilgisayar { Numara = 3, RamGB = 32, IslemciPuani = 4, EkranKartiPuani = 4 });
+
+            ToptanciEkle(new Toptanci { Ad = "Ahmet Toptan", Yas = 18, FirmaAdi = "Ahmet Gıda", VergiNo = "1234567890" });
+            IkramEkle(new Ikram { Ad = "Kutu Kola", Fiyat = 25m, StokMiktari = 50 });
         }
     }
 }

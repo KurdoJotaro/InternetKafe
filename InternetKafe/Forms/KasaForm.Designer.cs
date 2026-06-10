@@ -37,6 +37,7 @@
             panel2 = new Panel();
             tableLayoutPanel2 = new TableLayoutPanel();
             lblIslemGecmisi = new Label();
+            btnTamReset = new Button();
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -130,10 +131,12 @@
             // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.ColumnCount = 1;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel2.Controls.Add(lstIslemler, 0, 1);
             tableLayoutPanel2.Controls.Add(lblIslemGecmisi, 0, 0);
+            tableLayoutPanel2.Controls.Add(btnTamReset, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -142,6 +145,7 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
             tableLayoutPanel2.Size = new Size(679, 586);
             tableLayoutPanel2.TabIndex = 1;
+            tableLayoutPanel2.SetColumnSpan(lstIslemler, 2);
             // 
             // lblIslemGecmisi
             // 
@@ -154,6 +158,18 @@
             lblIslemGecmisi.TabIndex = 1;
             lblIslemGecmisi.Text = "İŞLEM GEÇMİŞİ";
             lblIslemGecmisi.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnTamReset
+            // 
+            btnTamReset.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnTamReset.Location = new Point(478, 24);
+            btnTamReset.Margin = new Padding(3, 24, 18, 24);
+            btnTamReset.Name = "btnTamReset";
+            btnTamReset.Size = new Size(183, 69);
+            btnTamReset.TabIndex = 2;
+            btnTamReset.Text = "Tam Reset";
+            btnTamReset.UseVisualStyleBackColor = true;
+            btnTamReset.Click += btnTamReset_Click;
             // 
             // KasaForm
             // 
@@ -186,5 +202,6 @@
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
         private Label lblIslemGecmisi;
+        private Button btnTamReset;
     }
 }

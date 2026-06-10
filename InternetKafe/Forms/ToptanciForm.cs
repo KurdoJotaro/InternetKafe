@@ -8,6 +8,7 @@ public partial class ToptanciForm : Form
     {
         InitializeComponent();
         FormStili.Uygula(this);
+        txtVergiNo.KeyPress += GirisDogrulama.SadeceRakamKeyPress;
         _yonetici = yonetici;
     }
 
@@ -29,9 +30,15 @@ public partial class ToptanciForm : Form
 
     private void btnEkle_Click(object sender, EventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(txtAd.Text) || string.IsNullOrWhiteSpace(txtFirmaAdi.Text))
+        if (GirisDogrulama.BosVeyaSadeceRakam(txtAd.Text) || GirisDogrulama.BosVeyaSadeceRakam(txtFirmaAdi.Text))
         {
-            MessageBox.Show("Ad ve Firma Adı boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Ad ve firma adı boş bırakılamaz ve sadece rakamlardan oluşamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+        if (!string.IsNullOrWhiteSpace(txtVergiNo.Text) && !GirisDogrulama.SadeceRakam(txtVergiNo.Text))
+        {
+            MessageBox.Show("Vergi no sadece rakamlardan oluşmalıdır.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 
@@ -39,10 +46,10 @@ public partial class ToptanciForm : Form
         {
             var toptanci = new Toptanci
             {
-                Ad = txtAd.Text,
+                Ad = txtAd.Text.Trim(),
                 Yas = 18,
-                FirmaAdi = txtFirmaAdi.Text,
-                VergiNo = txtVergiNo.Text
+                FirmaAdi = txtFirmaAdi.Text.Trim(),
+                VergiNo = txtVergiNo.Text.Trim()
             };
 
             _yonetici.ToptanciEkle(toptanci);

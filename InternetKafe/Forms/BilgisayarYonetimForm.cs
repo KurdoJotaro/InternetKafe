@@ -8,6 +8,7 @@ public partial class BilgisayarYonetimForm : Form
     {
         InitializeComponent();
         FormStili.Uygula(this);
+        txtNumara.KeyPress += GirisDogrulama.SadeceRakamKeyPress;
         _yonetici = yonetici;
     }
 
@@ -73,15 +74,15 @@ public partial class BilgisayarYonetimForm : Form
     {
         try
         {
-            if (string.IsNullOrWhiteSpace(txtNumara.Text))
+            if (!int.TryParse(txtNumara.Text, out int numara))
             {
-                MessageBox.Show("Numara giriniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Bilgisayar numarası sadece rakamlardan oluşmalıdır.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             var pc = new Bilgisayar
             {
-                Numara = int.Parse(txtNumara.Text),
+                Numara = numara,
                 RamGB = int.Parse(cmbRamGB.SelectedItem!.ToString()!),
                 IslemciPuani = cmbIslemci.SelectedIndex + 1,
                 EkranKartiPuani = cmbEkranKarti.SelectedIndex + 1
@@ -105,12 +106,18 @@ public partial class BilgisayarYonetimForm : Form
 
         try
         {
+            if (!int.TryParse(txtNumara.Text, out int numara))
+            {
+                MessageBox.Show("Bilgisayar numarası sadece rakamlardan oluşmalıdır.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var pc = SeciliBilgisayarGetir();
             if (pc == null) return;
 
             _yonetici.BilgisayarGuncelle(
                 pc,
-                int.Parse(txtNumara.Text),
+                numara,
                 int.Parse(cmbRamGB.SelectedItem!.ToString()!),
                 cmbIslemci.SelectedIndex + 1,
                 cmbEkranKarti.SelectedIndex + 1

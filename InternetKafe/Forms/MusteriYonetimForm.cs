@@ -36,9 +36,9 @@ public partial class MusteriYonetimForm : Form
     {
         try
         {
-            if (string.IsNullOrWhiteSpace(txtAd.Text))
+            if (GirisDogrulama.BosVeyaSadeceRakam(txtAd.Text))
             {
-                MessageBox.Show("Ad giriniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Müşteri adı boş bırakılamaz ve sadece rakamlardan oluşamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -67,6 +67,12 @@ public partial class MusteriYonetimForm : Form
 
         try
         {
+            if (GirisDogrulama.BosVeyaSadeceRakam(txtAd.Text))
+            {
+                MessageBox.Show("Müşteri adı boş bırakılamaz ve sadece rakamlardan oluşamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var musteri = SeciliMusteriGetir();
             if (musteri == null) return;
 

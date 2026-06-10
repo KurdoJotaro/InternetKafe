@@ -44,6 +44,15 @@
             cmbIkram = new ComboBox();
             numIkramAdet = new NumericUpDown();
             btnIkramSat = new Button();
+            lblMusteriSec = new Label();
+            lblBilgisayarSec = new Label();
+            lblAktifOturumlar = new Label();
+            lblSure = new Label();
+            lblIkramSec = new Label();
+            lblIkramAdet = new Label();
+            lblOturumBaslat = new Label();
+            lblOturumDetay = new Label();
+            lblIkramSiparis = new Label();
             ((System.ComponentModel.ISupportInitialize)numDakika).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numIkramAdet).BeginInit();
             SuspendLayout();
@@ -52,7 +61,7 @@
             // 
             cmbMusteri.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbMusteri.FormattingEnabled = true;
-            cmbMusteri.Location = new Point(12, 12);
+            cmbMusteri.Location = new Point(32, 78);
             cmbMusteri.Name = "cmbMusteri";
             cmbMusteri.Size = new Size(151, 28);
             cmbMusteri.TabIndex = 0;
@@ -61,14 +70,14 @@
             // 
             cmbBilgisayar.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBilgisayar.FormattingEnabled = true;
-            cmbBilgisayar.Location = new Point(12, 52);
+            cmbBilgisayar.Location = new Point(212, 78);
             cmbBilgisayar.Name = "cmbBilgisayar";
             cmbBilgisayar.Size = new Size(151, 28);
             cmbBilgisayar.TabIndex = 1;
             // 
             // btnOturumBaslat
             // 
-            btnOturumBaslat.Location = new Point(12, 98);
+            btnOturumBaslat.Location = new Point(392, 76);
             btnOturumBaslat.Name = "btnOturumBaslat";
             btnOturumBaslat.Size = new Size(156, 29);
             btnOturumBaslat.TabIndex = 2;
@@ -80,15 +89,15 @@
             // 
             lstAktifOturumlar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lstAktifOturumlar.FormattingEnabled = true;
-            lstAktifOturumlar.Location = new Point(212, 31);
+            lstAktifOturumlar.Location = new Point(32, 165);
             lstAktifOturumlar.Name = "lstAktifOturumlar";
-            lstAktifOturumlar.Size = new Size(414, 224);
+            lstAktifOturumlar.Size = new Size(430, 204);
             lstAktifOturumlar.TabIndex = 3;
             lstAktifOturumlar.SelectedIndexChanged += lstAktifOturumlar_SelectedIndexChanged;
             // 
             // numDakika
             // 
-            numDakika.Location = new Point(212, 276);
+            numDakika.Location = new Point(32, 424);
             numDakika.Maximum = new decimal(new int[] { 600, 0, 0, 0 });
             numDakika.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numDakika.Name = "numDakika";
@@ -100,7 +109,7 @@
             // lblMusteriAdi
             // 
             lblMusteriAdi.AutoSize = true;
-            lblMusteriAdi.Location = new Point(732, 42);
+            lblMusteriAdi.Location = new Point(555, 165);
             lblMusteriAdi.Name = "lblMusteriAdi";
             lblMusteriAdi.Size = new Size(71, 20);
             lblMusteriAdi.TabIndex = 5;
@@ -109,7 +118,7 @@
             // lblPCNo
             // 
             lblPCNo.AutoSize = true;
-            lblPCNo.Location = new Point(732, 75);
+            lblPCNo.Location = new Point(555, 198);
             lblPCNo.Name = "lblPCNo";
             lblPCNo.Size = new Size(39, 20);
             lblPCNo.TabIndex = 6;
@@ -118,7 +127,7 @@
             // lblBaslangic
             // 
             lblBaslangic.AutoSize = true;
-            lblBaslangic.Location = new Point(718, 107);
+            lblBaslangic.Location = new Point(555, 231);
             lblBaslangic.Name = "lblBaslangic";
             lblBaslangic.Size = new Size(85, 20);
             lblBaslangic.TabIndex = 7;
@@ -127,7 +136,7 @@
             // lblBilgisayarUcreti
             // 
             lblBilgisayarUcreti.AutoSize = true;
-            lblBilgisayarUcreti.Location = new Point(674, 152);
+            lblBilgisayarUcreti.Location = new Point(555, 276);
             lblBilgisayarUcreti.Name = "lblBilgisayarUcreti";
             lblBilgisayarUcreti.Size = new Size(82, 20);
             lblBilgisayarUcreti.TabIndex = 8;
@@ -136,7 +145,7 @@
             // lblIndirim
             // 
             lblIndirim.AutoSize = true;
-            lblIndirim.Location = new Point(732, 172);
+            lblIndirim.Location = new Point(555, 309);
             lblIndirim.Name = "lblIndirim";
             lblIndirim.Size = new Size(69, 20);
             lblIndirim.TabIndex = 9;
@@ -145,7 +154,7 @@
             // lblIkramTutari
             // 
             lblIkramTutari.AutoSize = true;
-            lblIkramTutari.Location = new Point(732, 198);
+            lblIkramTutari.Location = new Point(555, 342);
             lblIkramTutari.Name = "lblIkramTutari";
             lblIkramTutari.Size = new Size(57, 20);
             lblIkramTutari.TabIndex = 15;
@@ -154,7 +163,7 @@
             // lblToplamTutar
             // 
             lblToplamTutar.AutoSize = true;
-            lblToplamTutar.Location = new Point(693, 225);
+            lblToplamTutar.Location = new Point(555, 384);
             lblToplamTutar.Name = "lblToplamTutar";
             lblToplamTutar.Size = new Size(78, 20);
             lblToplamTutar.TabIndex = 10;
@@ -162,7 +171,7 @@
             // 
             // btnOturumBitir
             // 
-            btnOturumBitir.Location = new Point(470, 276);
+            btnOturumBitir.Location = new Point(202, 422);
             btnOturumBitir.Name = "btnOturumBitir";
             btnOturumBitir.Size = new Size(156, 29);
             btnOturumBitir.TabIndex = 11;
@@ -172,15 +181,16 @@
             // 
             // cmbIkram
             // 
+            cmbIkram.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbIkram.FormattingEnabled = true;
-            cmbIkram.Location = new Point(183, 374);
+            cmbIkram.Location = new Point(392, 501);
             cmbIkram.Name = "cmbIkram";
             cmbIkram.Size = new Size(151, 28);
             cmbIkram.TabIndex = 12;
             // 
             // numIkramAdet
             // 
-            numIkramAdet.Location = new Point(355, 374);
+            numIkramAdet.Location = new Point(572, 501);
             numIkramAdet.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numIkramAdet.Name = "numIkramAdet";
             numIkramAdet.Size = new Size(150, 27);
@@ -189,7 +199,7 @@
             // 
             // btnIkramSat
             // 
-            btnIkramSat.Location = new Point(511, 374);
+            btnIkramSat.Location = new Point(742, 499);
             btnIkramSat.Name = "btnIkramSat";
             btnIkramSat.Size = new Size(191, 29);
             btnIkramSat.TabIndex = 14;
@@ -197,11 +207,105 @@
             btnIkramSat.UseVisualStyleBackColor = true;
             btnIkramSat.Click += btnIkramSat_Click;
             // 
+            // lblMusteriSec
+            // 
+            lblMusteriSec.AutoSize = true;
+            lblMusteriSec.Location = new Point(32, 55);
+            lblMusteriSec.Name = "lblMusteriSec";
+            lblMusteriSec.Size = new Size(58, 20);
+            lblMusteriSec.TabIndex = 16;
+            lblMusteriSec.Text = "Müşteri";
+            // 
+            // lblBilgisayarSec
+            // 
+            lblBilgisayarSec.AutoSize = true;
+            lblBilgisayarSec.Location = new Point(212, 55);
+            lblBilgisayarSec.Name = "lblBilgisayarSec";
+            lblBilgisayarSec.Size = new Size(73, 20);
+            lblBilgisayarSec.TabIndex = 17;
+            lblBilgisayarSec.Text = "Boş PC";
+            // 
+            // lblAktifOturumlar
+            // 
+            lblAktifOturumlar.AutoSize = true;
+            lblAktifOturumlar.Font = new Font("Noto Sans ExtBd", 10.2F, FontStyle.Bold);
+            lblAktifOturumlar.Location = new Point(32, 132);
+            lblAktifOturumlar.Name = "lblAktifOturumlar";
+            lblAktifOturumlar.Size = new Size(142, 24);
+            lblAktifOturumlar.TabIndex = 18;
+            lblAktifOturumlar.Text = "Aktif Oturumlar";
+            // 
+            // lblSure
+            // 
+            lblSure.AutoSize = true;
+            lblSure.Location = new Point(32, 401);
+            lblSure.Name = "lblSure";
+            lblSure.Size = new Size(96, 20);
+            lblSure.TabIndex = 19;
+            lblSure.Text = "Süre (dakika)";
+            // 
+            // lblIkramSec
+            // 
+            lblIkramSec.AutoSize = true;
+            lblIkramSec.Location = new Point(392, 478);
+            lblIkramSec.Name = "lblIkramSec";
+            lblIkramSec.Size = new Size(44, 20);
+            lblIkramSec.TabIndex = 20;
+            lblIkramSec.Text = "İkram";
+            // 
+            // lblIkramAdet
+            // 
+            lblIkramAdet.AutoSize = true;
+            lblIkramAdet.Location = new Point(572, 478);
+            lblIkramAdet.Name = "lblIkramAdet";
+            lblIkramAdet.Size = new Size(42, 20);
+            lblIkramAdet.TabIndex = 21;
+            lblIkramAdet.Text = "Adet";
+            // 
+            // lblOturumBaslat
+            // 
+            lblOturumBaslat.AutoSize = true;
+            lblOturumBaslat.Font = new Font("Noto Sans ExtBd", 10.2F, FontStyle.Bold);
+            lblOturumBaslat.Location = new Point(32, 25);
+            lblOturumBaslat.Name = "lblOturumBaslat";
+            lblOturumBaslat.Size = new Size(129, 24);
+            lblOturumBaslat.TabIndex = 22;
+            lblOturumBaslat.Text = "Oturum Başlat";
+            // 
+            // lblOturumDetay
+            // 
+            lblOturumDetay.AutoSize = true;
+            lblOturumDetay.Font = new Font("Noto Sans ExtBd", 10.2F, FontStyle.Bold);
+            lblOturumDetay.Location = new Point(555, 132);
+            lblOturumDetay.Name = "lblOturumDetay";
+            lblOturumDetay.Size = new Size(129, 24);
+            lblOturumDetay.TabIndex = 23;
+            lblOturumDetay.Text = "Oturum Detayı";
+            // 
+            // lblIkramSiparis
+            // 
+            lblIkramSiparis.AutoSize = true;
+            lblIkramSiparis.Font = new Font("Noto Sans ExtBd", 10.2F, FontStyle.Bold);
+            lblIkramSiparis.Location = new Point(392, 448);
+            lblIkramSiparis.Name = "lblIkramSiparis";
+            lblIkramSiparis.Size = new Size(130, 24);
+            lblIkramSiparis.TabIndex = 24;
+            lblIkramSiparis.Text = "Masaya İkram";
+            // 
             // OturumForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914, 586);
+            Controls.Add(lblIkramSiparis);
+            Controls.Add(lblOturumDetay);
+            Controls.Add(lblOturumBaslat);
+            Controls.Add(lblIkramAdet);
+            Controls.Add(lblIkramSec);
+            Controls.Add(lblSure);
+            Controls.Add(lblAktifOturumlar);
+            Controls.Add(lblBilgisayarSec);
+            Controls.Add(lblMusteriSec);
             Controls.Add(btnIkramSat);
             Controls.Add(numIkramAdet);
             Controls.Add(cmbIkram);
@@ -246,5 +350,14 @@
         private ComboBox cmbIkram;
         private NumericUpDown numIkramAdet;
         private Button btnIkramSat;
+        private Label lblMusteriSec;
+        private Label lblBilgisayarSec;
+        private Label lblAktifOturumlar;
+        private Label lblSure;
+        private Label lblIkramSec;
+        private Label lblIkramAdet;
+        private Label lblOturumBaslat;
+        private Label lblOturumDetay;
+        private Label lblIkramSiparis;
     }
 }
