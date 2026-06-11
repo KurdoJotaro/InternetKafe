@@ -1,9 +1,8 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36930.0 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetKafe", "InternetKafe\InternetKafe.csproj", "{40735231-D82B-4DB0-9341-EFDC8B80E571}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556F}") = "InternetKafev2", "InternetKafe\InternetKafev2.csproj", "{C19F8CC1-6609-4F4C-BD3C-9C51DFB0FF5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +10,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{40735231-D82B-4DB0-9341-EFDC8B80E571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40735231-D82B-4DB0-9341-EFDC8B80E571}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40735231-D82B-4DB0-9341-EFDC8B80E571}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40735231-D82B-4DB0-9341-EFDC8B80E571}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C19F8CC1-6609-4F4C-BD3C-9C51DFB0FF5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C19F8CC1-6609-4F4C-BD3C-9C51DFB0FF5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C19F8CC1-6609-4F4C-BD3C-9C51DFB0FF5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C19F8CC1-6609-4F4C-BD3C-9C51DFB0FF5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A3AF3E27-36A6-4EAF-91E6-B4BE47EF7CCB}
+		SolutionGuid = {F7742AB4-5003-40A0-87CD-76865FA9C9A9}
 	EndGlobalSection
 EndGlobal

@@ -53,6 +53,7 @@
             panel3 = new Panel();
             tableLayoutPanel6 = new TableLayoutPanel();
             tableLayoutPanel7 = new TableLayoutPanel();
+            lblKisiBilgisi = new Label();
             ((System.ComponentModel.ISupportInitialize)numYas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvMusteriler).BeginInit();
             panel1.SuspendLayout();
@@ -142,6 +143,7 @@
             dgvMusteriler.RowHeadersWidth = 51;
             dgvMusteriler.Size = new Size(675, 399);
             dgvMusteriler.TabIndex = 6;
+            dgvMusteriler.SelectionChanged += dgvMusteriler_SelectionChanged;
             // 
             // colAd
             // 
@@ -221,12 +223,14 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Controls.Add(panel2, 0, 0);
             tableLayoutPanel1.Controls.Add(panel3, 0, 1);
+            tableLayoutPanel1.Controls.Add(lblKisiBilgisi, 0, 2);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 28F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 62F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             tableLayoutPanel1.Size = new Size(914, 586);
             tableLayoutPanel1.TabIndex = 0;
             // 
@@ -340,6 +344,17 @@
             tableLayoutPanel7.Size = new Size(221, 399);
             tableLayoutPanel7.TabIndex = 7;
             // 
+            // lblKisiBilgisi
+            // 
+            lblKisiBilgisi.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblKisiBilgisi.Location = new Point(12, 527);
+            lblKisiBilgisi.Margin = new Padding(12, 0, 12, 8);
+            lblKisiBilgisi.Name = "lblKisiBilgisi";
+            lblKisiBilgisi.Size = new Size(890, 51);
+            lblKisiBilgisi.TabIndex = 9;
+            lblKisiBilgisi.Text = "Seçili kişi bilgisi: -";
+            lblKisiBilgisi.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // MusteriYonetimForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -395,5 +410,6 @@
         private TableLayoutPanel tableLayoutPanel5;
         private TableLayoutPanel tableLayoutPanel6;
         private TableLayoutPanel tableLayoutPanel7;
+        private Label lblKisiBilgisi;
     }
 }

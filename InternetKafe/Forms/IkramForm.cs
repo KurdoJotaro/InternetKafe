@@ -37,7 +37,8 @@ public partial class IkramForm : Form
         dgvIkramlar.Rows.Clear();
         foreach (var i in _yonetici.Ikramlar)
         {
-            dgvIkramlar.Rows.Add(i.Ad, i.Fiyat.ToString("C2"), i.StokMiktari);
+            int rowIndex = dgvIkramlar.Rows.Add(i.Ad, i.Fiyat.ToString("C2"), i.StokMiktari);
+            dgvIkramlar.Rows[rowIndex].Tag = i;
         }
 
         // Veriler eklendikten sonra eski moda geri döndür
@@ -46,24 +47,37 @@ public partial class IkramForm : Form
 
     private void btnEkle_Click(object sender, EventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(txtAd.Text))
+        if (GirisDogrulama.BosVeyaSadeceRakam(txtAd.Text))
         {
-            MessageBox.Show("Ürün adı boş olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Ürün adı boş bırakılamaz ve sadece rakamlardan oluşamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 
-        var ikram = new Ikram
+        if (numFiyat.Value <= 0)
         {
-            Ad = txtAd.Text,
-            Fiyat = numFiyat.Value,
-            StokMiktari = 0 // Yeni eklenen ürünün stoku başlangıçta 0'dır
-        };
+            MessageBox.Show("Ürün satış fiyatı 0'dan büyük olmalıdır.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
 
-        _yonetici.IkramEkle(ikram);
-        CombolariDoldur();
-        GridGuncelle();
-        txtAd.Clear();
-        numFiyat.Value = 0;
+        try
+        {
+            var ikram = new Ikram
+            {
+                Ad = txtAd.Text.Trim(),
+                Fiyat = numFiyat.Value,
+                StokMiktari = 0
+            };
+
+            _yonetici.IkramEkle(ikram);
+            CombolariDoldur();
+            GridGuncelle();
+            txtAd.Clear();
+            numFiyat.Value = 0;
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 
     private void btnStokAl_Click(object sender, EventArgs e)
@@ -79,6 +93,12 @@ public partial class IkramForm : Form
         int adet = (int)numAlimAdet.Value;
         decimal fiyat = numAlimFiyati.Value;
 
+        if (fiyat <= 0)
+        {
+            MessageBox.Show("Alış fiyatı 0'dan büyük olmalıdır.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
         try
         {
             _yonetici.StokAlimi(ikram, toptanci, adet, fiyat);
@@ -91,6 +111,39 @@ public partial class IkramForm : Form
         }
 
         (Application.OpenForms["AnaForm"] as AnaForm)?.DashboardGuncelle();// Üst paneldeki bilgileri güncelle.
+    }
+
+    private void btnSil_Click(object sender, EventArgs e)
+    {
+        var ikram = SeciliIkramGetir();
+        if (ikram == null)
+        {
+            MessageBox.Show("Silinecek ürünü listeden seçiniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+        var sonuc = MessageBox.Show(
+            $"{ikram.Ad} ürününü silmek istiyor musunuz?",
+            "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+        if (sonuc != DialogResult.Yes) return;
+
+        try
+        {
+            _yonetici.IkramSil(ikram);
+            CombolariDoldur();
+            GridGuncelle();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private Ikram? SeciliIkramGetir()
+    {
+        if (dgvIkramlar.SelectedRows.Count == 0) return null;
+        return dgvIkramlar.SelectedRows[0].Tag as Ikram;
     }
 
     private void IkramForm_Load(object sender, EventArgs e)

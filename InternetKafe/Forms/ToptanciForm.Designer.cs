@@ -33,6 +33,11 @@
             txtVergiNo = new TextBox();
             btnEkle = new Button();
             dgvToptancilar = new DataGridView();
+            lblYetkiliAdi = new Label();
+            lblFirmaAdi = new Label();
+            lblVergiNo = new Label();
+            lblToptanciTanim = new Label();
+            lblKisiBilgisi = new Label();
             colAd = new DataGridViewTextBoxColumn();
             colFirma = new DataGridViewTextBoxColumn();
             colVergiNo = new DataGridViewTextBoxColumn();
@@ -41,30 +46,30 @@
             // 
             // txtAd
             // 
-            txtAd.Location = new Point(104, 83);
+            txtAd.Location = new Point(32, 82);
             txtAd.Name = "txtAd";
-            txtAd.Size = new Size(125, 27);
+            txtAd.Size = new Size(180, 27);
             txtAd.TabIndex = 0;
             // 
             // txtFirmaAdi
             // 
-            txtFirmaAdi.Location = new Point(249, 83);
+            txtFirmaAdi.Location = new Point(232, 82);
             txtFirmaAdi.Name = "txtFirmaAdi";
-            txtFirmaAdi.Size = new Size(125, 27);
+            txtFirmaAdi.Size = new Size(180, 27);
             txtFirmaAdi.TabIndex = 2;
             // 
             // txtVergiNo
             // 
-            txtVergiNo.Location = new Point(405, 82);
+            txtVergiNo.Location = new Point(432, 82);
             txtVergiNo.Name = "txtVergiNo";
-            txtVergiNo.Size = new Size(125, 27);
+            txtVergiNo.Size = new Size(180, 27);
             txtVergiNo.TabIndex = 3;
             // 
             // btnEkle
             // 
-            btnEkle.Location = new Point(104, 162);
+            btnEkle.Location = new Point(632, 80);
             btnEkle.Name = "btnEkle";
-            btnEkle.Size = new Size(94, 29);
+            btnEkle.Size = new Size(130, 31);
             btnEkle.TabIndex = 4;
             btnEkle.Text = "Ekle";
             btnEkle.UseVisualStyleBackColor = true;
@@ -76,11 +81,59 @@
             dgvToptancilar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvToptancilar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvToptancilar.Columns.AddRange(new DataGridViewColumn[] { colAd, colFirma, colVergiNo });
-            dgvToptancilar.Location = new Point(110, 220);
+            dgvToptancilar.Location = new Point(32, 160);
             dgvToptancilar.Name = "dgvToptancilar";
             dgvToptancilar.RowHeadersWidth = 51;
-            dgvToptancilar.Size = new Size(702, 324);
+            dgvToptancilar.Size = new Size(850, 360);
             dgvToptancilar.TabIndex = 5;
+            dgvToptancilar.SelectionChanged += dgvToptancilar_SelectionChanged;
+            // 
+            // lblYetkiliAdi
+            // 
+            lblYetkiliAdi.AutoSize = true;
+            lblYetkiliAdi.Location = new Point(32, 59);
+            lblYetkiliAdi.Name = "lblYetkiliAdi";
+            lblYetkiliAdi.Size = new Size(78, 20);
+            lblYetkiliAdi.TabIndex = 6;
+            lblYetkiliAdi.Text = "Yetkili Adı";
+            // 
+            // lblFirmaAdi
+            // 
+            lblFirmaAdi.AutoSize = true;
+            lblFirmaAdi.Location = new Point(232, 59);
+            lblFirmaAdi.Name = "lblFirmaAdi";
+            lblFirmaAdi.Size = new Size(76, 20);
+            lblFirmaAdi.TabIndex = 7;
+            lblFirmaAdi.Text = "Firma Adı";
+            // 
+            // lblVergiNo
+            // 
+            lblVergiNo.AutoSize = true;
+            lblVergiNo.Location = new Point(432, 59);
+            lblVergiNo.Name = "lblVergiNo";
+            lblVergiNo.Size = new Size(66, 20);
+            lblVergiNo.TabIndex = 8;
+            lblVergiNo.Text = "Vergi No";
+            // 
+            // lblToptanciTanim
+            // 
+            lblToptanciTanim.AutoSize = true;
+            lblToptanciTanim.Font = new Font("Noto Sans ExtBd", 10.2F, FontStyle.Bold);
+            lblToptanciTanim.Location = new Point(32, 25);
+            lblToptanciTanim.Name = "lblToptanciTanim";
+            lblToptanciTanim.Size = new Size(137, 24);
+            lblToptanciTanim.TabIndex = 9;
+            lblToptanciTanim.Text = "Toptancı Tanımı";
+            // 
+            // lblKisiBilgisi
+            // 
+            lblKisiBilgisi.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblKisiBilgisi.Location = new Point(32, 535);
+            lblKisiBilgisi.Name = "lblKisiBilgisi";
+            lblKisiBilgisi.Size = new Size(850, 31);
+            lblKisiBilgisi.TabIndex = 10;
+            lblKisiBilgisi.Text = "Seçili kişi bilgisi: -";
+            lblKisiBilgisi.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // colAd
             // 
@@ -105,6 +158,11 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914, 586);
+            Controls.Add(lblKisiBilgisi);
+            Controls.Add(lblToptanciTanim);
+            Controls.Add(lblVergiNo);
+            Controls.Add(lblFirmaAdi);
+            Controls.Add(lblYetkiliAdi);
             Controls.Add(dgvToptancilar);
             Controls.Add(btnEkle);
             Controls.Add(txtVergiNo);
@@ -126,6 +184,11 @@
         private TextBox txtVergiNo;
         private Button btnEkle;
         private DataGridView dgvToptancilar;
+        private Label lblYetkiliAdi;
+        private Label lblFirmaAdi;
+        private Label lblVergiNo;
+        private Label lblToptanciTanim;
+        private Label lblKisiBilgisi;
         private DataGridViewTextBoxColumn colAd;
         private DataGridViewTextBoxColumn colFirma;
         private DataGridViewTextBoxColumn colVergiNo;

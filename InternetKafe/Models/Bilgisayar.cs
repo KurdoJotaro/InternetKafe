@@ -55,7 +55,7 @@ public class Bilgisayar : IUcretlendirilebilir
                 _ => 10m
             };
         }
-        set { } // interface gereği bulunmak zorunda
+        set { } 
     }
 
     public decimal ToplamUcretHesapla(int dakika)

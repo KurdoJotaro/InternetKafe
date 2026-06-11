@@ -8,6 +8,7 @@ public partial class BilgisayarYonetimForm : Form
     {
         InitializeComponent();
         FormStili.Uygula(this);
+        txtNumara.KeyPress += GirisDogrulama.SadeceRakamKeyPress;
         _yonetici = yonetici;
     }
 
@@ -40,29 +41,27 @@ public partial class BilgisayarYonetimForm : Form
 
     private void PuanHesapla()
     {
-        try
+        if (cmbRamGB.SelectedItem == null || cmbIslemci.SelectedItem == null || cmbEkranKarti.SelectedItem == null)
+            return;
+
+        if (!int.TryParse(cmbRamGB.SelectedItem.ToString(), out int ram))
+            return;
+
+        int islemci = cmbIslemci.SelectedIndex + 1;
+        int gpu = cmbEkranKarti.SelectedIndex + 1;
+        int puan = (ram / 8) + islemci + gpu;
+
+        string kategori = puan >= 8 ? "Turnuva" : (puan >= 5 ? "VIP" : "Standart");
+        decimal ucret = kategori switch
         {
-            if (cmbRamGB.SelectedItem == null || cmbIslemci.SelectedItem == null || cmbEkranKarti.SelectedItem == null)
-                return;
+            "Turnuva" => 30m,
+            "VIP" => 20m,
+            _ => 10m
+        };
 
-            int ram = int.Parse(cmbRamGB.SelectedItem.ToString()!);
-            int islemci = cmbIslemci.SelectedIndex + 1; // İndeks 0'dan başlar, puan 1'den
-            int gpu = cmbEkranKarti.SelectedIndex + 1;
-            int puan = (ram / 8) + islemci + gpu;
-
-            string kategori = puan >= 8 ? "Turnuva" : (puan >= 5 ? "VIP" : "Standart");
-            decimal ucret = kategori switch
-            {
-                "Turnuva" => 30m,
-                "VIP" => 20m,
-                _ => 10m
-            };
-
-            lblPerformansPuani.Text = $"Performans: {puan}";
-            lblKategori.Text = $"Kategori: {kategori}";
-            lblSaatlikUcret.Text = $"Ücret: {ucret:C2}/saat";
-        }
-        catch { }
+        lblPerformansPuani.Text = $"Performans: {puan}";
+        lblKategori.Text = $"Kategori: {kategori}";
+        lblSaatlikUcret.Text = $"Ücret: {ucret:C2}/saat";
     }
 
     private void cmbRamGB_SelectedIndexChanged(object sender, EventArgs e) => PuanHesapla();
@@ -73,16 +72,16 @@ public partial class BilgisayarYonetimForm : Form
     {
         try
         {
-            if (string.IsNullOrWhiteSpace(txtNumara.Text))
+            if (!int.TryParse(txtNumara.Text, out int numara))
             {
-                MessageBox.Show("Numara giriniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Bilgisayar numarası sadece rakamlardan oluşmalıdır.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             var pc = new Bilgisayar
             {
-                Numara = int.Parse(txtNumara.Text),
-                RamGB = int.Parse(cmbRamGB.SelectedItem!.ToString()!),
+                Numara = numara,
+                RamGB = SeciliRamGetir(),
                 IslemciPuani = cmbIslemci.SelectedIndex + 1,
                 EkranKartiPuani = cmbEkranKarti.SelectedIndex + 1
             };
@@ -105,13 +104,19 @@ public partial class BilgisayarYonetimForm : Form
 
         try
         {
+            if (!int.TryParse(txtNumara.Text, out int numara))
+            {
+                MessageBox.Show("Bilgisayar numarası sadece rakamlardan oluşmalıdır.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var pc = SeciliBilgisayarGetir();
             if (pc == null) return;
 
             _yonetici.BilgisayarGuncelle(
                 pc,
-                int.Parse(txtNumara.Text),
-                int.Parse(cmbRamGB.SelectedItem!.ToString()!),
+                numara,
+                SeciliRamGetir(),
                 cmbIslemci.SelectedIndex + 1,
                 cmbEkranKarti.SelectedIndex + 1
             );
@@ -161,6 +166,7 @@ public partial class BilgisayarYonetimForm : Form
         cmbRamGB.SelectedItem = pc.RamGB.ToString();
         cmbIslemci.SelectedIndex = pc.IslemciPuani - 1;
         cmbEkranKarti.SelectedIndex = pc.EkranKartiPuani - 1;
+        lblUcretBilgisi.Text = pc.UcretBilgisi();
     }
 
     private Bilgisayar? SeciliBilgisayarGetir()
@@ -169,11 +175,20 @@ public partial class BilgisayarYonetimForm : Form
         return dgvBilgisayarlar.SelectedRows[0].Tag as Bilgisayar;
     }
 
+    private int SeciliRamGetir()
+    {
+        if (cmbRamGB.SelectedItem == null || !int.TryParse(cmbRamGB.SelectedItem.ToString(), out int ram))
+            throw new InvalidOperationException("RAM seçimi geçersiz.");
+
+        return ram;
+    }
+
     private void FormuTemizle()
     {
         txtNumara.Clear();
         cmbRamGB.SelectedIndex = 1;
         cmbIslemci.SelectedIndex = 1;
         cmbEkranKarti.SelectedIndex = 1;
+        lblUcretBilgisi.Text = "Seçili ücret bilgisi: -";
     }
 }

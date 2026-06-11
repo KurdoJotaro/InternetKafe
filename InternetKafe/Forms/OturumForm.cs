@@ -116,6 +116,7 @@ public partial class OturumForm : Form
         lblMusteriAdi.Text = $"Müşteri: {oturum.Musteri.Ad}";
         lblPCNo.Text = $"PC: {oturum.Bilgisayar.Numara} ({oturum.Bilgisayar.Kategori})";
         lblBaslangic.Text = $"Başlangıç: {oturum.BaslangicZamani:HH:mm}";
+        lblUcretBilgisi.Text = oturum.UcretBilgisi();
 
         UcretHesapla();
     }
@@ -181,6 +182,7 @@ public partial class OturumForm : Form
         lblMusteriAdi.Text = "Müşteri: -";
         lblPCNo.Text = "PC: -";
         lblBaslangic.Text = "Başlangıç: -";
+        lblUcretBilgisi.Text = "Seçili ücret bilgisi: -";
         lblBilgisayarUcreti.Text = "PC Ücreti: -";
         lblIndirim.Text = "İndirim: -";
         lblIkramTutari.Text = "İkram: -";

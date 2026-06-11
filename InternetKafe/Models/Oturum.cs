@@ -14,7 +14,7 @@ public class Oturum : IUcretlendirilebilir
         set
         {
             if (value < 30)
-                _kullanilanDakika = 30; // Minimum 30 dakika kuralı
+                _kullanilanDakika = 30; 
             else
                 _kullanilanDakika = value;
         }
@@ -52,7 +52,6 @@ public class Oturum : IUcretlendirilebilir
 
     public override string ToString()
     {
-        string durum = AktifMi ? "AKTİF" : "Kapandı";
-        return $"[{durum}] {Musteri?.Ad} → PC-{Bilgisayar?.Numara} ({BaslangicZamani:HH:mm})";
+        return $"{Musteri?.Ad} → PC-{Bilgisayar?.Numara} ({BaslangicZamani:HH:mm})";
     }
 }   

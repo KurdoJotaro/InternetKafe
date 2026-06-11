@@ -18,7 +18,7 @@ public abstract class Kisi
         set
         {
             if (value < 18)
-                throw new ArgumentException("Yaş 18'den küçük olamaz. Thats illegal bro...");
+                throw new ArgumentException("Yaş 18'den küçük olamaz. Yasak değil, müessesenin keyfi böyle istiyor.");
             _yas = value;
         }
     }

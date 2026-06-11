@@ -7,8 +7,6 @@ public static class DosyaIslemleri
 {
     private const string DosyaYolu = "kafe_verileri.json";
 
-    // Nesne referanslarını korumak (ReferenceHandler.Preserve) çok önemlidir, 
-    // aksi takdirde Oturum'daki Müşteri ile Ana listedeki Müşteri farklı nesneler olarak algılanır.
     private static readonly JsonSerializerOptions Options = new()
     {
         ReferenceHandler = ReferenceHandler.Preserve,

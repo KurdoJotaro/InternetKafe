@@ -8,6 +8,7 @@ public partial class ToptanciForm : Form
     {
         InitializeComponent();
         FormStili.Uygula(this);
+        txtVergiNo.KeyPress += GirisDogrulama.SadeceRakamKeyPress;
         _yonetici = yonetici;
     }
 
@@ -20,7 +21,8 @@ public partial class ToptanciForm : Form
         dgvToptancilar.Rows.Clear();
         foreach (var t in _yonetici.Toptancilar)
         {
-            dgvToptancilar.Rows.Add(t.Ad, t.FirmaAdi, t.VergiNo);
+            int rowIndex = dgvToptancilar.Rows.Add(t.Ad, t.FirmaAdi, t.VergiNo);
+            dgvToptancilar.Rows[rowIndex].Tag = t;
         }
 
         // Veriler eklendikten sonra eski moda geri döndür
@@ -29,9 +31,15 @@ public partial class ToptanciForm : Form
 
     private void btnEkle_Click(object sender, EventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(txtAd.Text) || string.IsNullOrWhiteSpace(txtFirmaAdi.Text))
+        if (GirisDogrulama.BosVeyaSadeceRakam(txtAd.Text) || GirisDogrulama.BosVeyaSadeceRakam(txtFirmaAdi.Text))
         {
-            MessageBox.Show("Ad ve Firma Adı boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Ad ve firma adı boş bırakılamaz ve sadece rakamlardan oluşamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+        if (!string.IsNullOrWhiteSpace(txtVergiNo.Text) && !GirisDogrulama.SadeceRakam(txtVergiNo.Text))
+        {
+            MessageBox.Show("Vergi no sadece rakamlardan oluşmalıdır.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 
@@ -39,10 +47,10 @@ public partial class ToptanciForm : Form
         {
             var toptanci = new Toptanci
             {
-                Ad = txtAd.Text,
+                Ad = txtAd.Text.Trim(),
                 Yas = 18,
-                FirmaAdi = txtFirmaAdi.Text,
-                VergiNo = txtVergiNo.Text
+                FirmaAdi = txtFirmaAdi.Text.Trim(),
+                VergiNo = txtVergiNo.Text.Trim()
             };
 
             _yonetici.ToptanciEkle(toptanci);
@@ -60,10 +68,28 @@ public partial class ToptanciForm : Form
         txtAd.Clear();
         txtFirmaAdi.Clear();
         txtVergiNo.Clear();
+        lblKisiBilgisi.Text = "Seçili kişi bilgisi: -";
     }
 
     private void ToptanciForm_Load(object sender, EventArgs e)
     {
         GridGuncelle();
+    }
+
+    private void dgvToptancilar_SelectionChanged(object sender, EventArgs e)
+    {
+        var toptanci = SeciliToptanciGetir();
+        if (toptanci == null) return;
+
+        txtAd.Text = toptanci.Ad;
+        txtFirmaAdi.Text = toptanci.FirmaAdi;
+        txtVergiNo.Text = toptanci.VergiNo;
+        lblKisiBilgisi.Text = toptanci.BilgiGetir();
+    }
+
+    private Toptanci? SeciliToptanciGetir()
+    {
+        if (dgvToptancilar.SelectedRows.Count == 0) return null;
+        return dgvToptancilar.SelectedRows[0].Tag as Toptanci;
     }
 }

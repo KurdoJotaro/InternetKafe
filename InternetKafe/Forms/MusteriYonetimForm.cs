@@ -36,9 +36,9 @@ public partial class MusteriYonetimForm : Form
     {
         try
         {
-            if (string.IsNullOrWhiteSpace(txtAd.Text))
+            if (GirisDogrulama.BosVeyaSadeceRakam(txtAd.Text))
             {
-                MessageBox.Show("Ad giriniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Müşteri adı boş bırakılamaz ve sadece rakamlardan oluşamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -67,6 +67,12 @@ public partial class MusteriYonetimForm : Form
 
         try
         {
+            if (GirisDogrulama.BosVeyaSadeceRakam(txtAd.Text))
+            {
+                MessageBox.Show("Müşteri adı boş bırakılamaz ve sadece rakamlardan oluşamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var musteri = SeciliMusteriGetir();
             if (musteri == null) return;
 
@@ -110,6 +116,7 @@ public partial class MusteriYonetimForm : Form
         txtAd.Text = m.Ad;
         numYas.Value = m.Yas;
         chkUyelik.Checked = m.UyelikVar;
+        lblKisiBilgisi.Text = m.BilgiGetir();
     }
 
     private Musteri? SeciliMusteriGetir()
@@ -123,5 +130,6 @@ public partial class MusteriYonetimForm : Form
         txtAd.Clear();
         numYas.Value = 18;
         chkUyelik.Checked = false;
+        lblKisiBilgisi.Text = "Seçili kişi bilgisi: -";
     }
 }
